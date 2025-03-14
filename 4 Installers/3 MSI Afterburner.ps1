@@ -43,11 +43,9 @@
 
 Write-Host "Installing: MSI Afterburner. Please wait . . ."
 # download msi afterburner
-Get-FileFromWeb -URL "https://ftp.nluug.nl/pub/games/PC/guru3d/afterburner/[Guru3D.com]-MSIAfterburnerSetup466Beta3Build16831.zip" -File "$env:TEMP\MSI Afterburner.zip"
-# extract files
-Expand-Archive "$env:TEMP\MSI Afterburner.zip" -DestinationPath "$env:TEMP" -ErrorAction SilentlyContinue
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/MSI Afterburner.exe" -File "$env:TEMP\MSI Afterburner.exe"
 # install msi afterburner
-Start-Process -wait "$env:TEMP\MSIAfterburnerSetup466Beta3.exe" -ArgumentList "/S"
+Start-Process -wait "$env:TEMP\MSI Afterburner.exe" -ArgumentList "/S"
 # new folder
 New-Item -Path "$env:SystemDrive\Program Files (x86)\MSI Afterburner" -Name "Profiles" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 # create config for msi afterburner

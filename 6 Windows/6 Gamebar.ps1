@@ -115,8 +115,10 @@ Get-AppXPackage -AllUsers *Microsoft.XboxIdentityProvider* | Foreach {Add-AppxPa
 Get-AppXPackage -AllUsers *Microsoft.XboxSpeechToTextOverlay* | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register -ErrorAction SilentlyContinue "$($_.InstallLocation)\AppXManifest.xml"}
 Get-AppXPackage -AllUsers *Microsoft.WindowsStore* | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register -ErrorAction SilentlyContinue "$($_.InstallLocation)\AppXManifest.xml"}
 Get-AppXPackage -AllUsers *Microsoft.Microsoft.StorePurchaseApp * | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register -ErrorAction SilentlyContinue "$($_.InstallLocation)\AppXManifest.xml"}
+Write-Host "Installing: Edge Webview . . ."
 # download edge webview installer
 Get-FileFromWeb -URL "https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/304fddef-b073-4e0a-b1ff-c2ea02584017/MicrosoftEdgeWebview2Setup.exe" -File "$env:TEMP\EdgeWebView.exe"
+Clear-Host
 # start edge webview installer
 Start-Process -wait "$env:TEMP\EdgeWebView.exe"
 Write-Host "Restart to apply . . ."

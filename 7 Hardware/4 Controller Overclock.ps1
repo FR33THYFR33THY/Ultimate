@@ -75,7 +75,13 @@ Clear-Host
 Write-Host "If not using Option 1, disable Secure Boot in BIOS and delete Secure Boot keys . . ."
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 Clear-Host
-Start-Process "https://github.com/FR33THYFR33THY/files/raw/main/hidusbf.zip"
+Write-Host "Installing: hidusbf . . ."
+# download hidusbf
+$result = Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/hidusbf.zip" -File "$env:TEMP\hidusbf.zip"
+# extract files
+Expand-Archive "$env:TEMP\hidusbf.zip" -DestinationPath "$env:TEMP\hidusbf" -ErrorAction SilentlyContinue
+# start hidusbf
+Start-Process "$env:TEMP\hidusbf\setup.exe"
 exit
 
       }

@@ -86,9 +86,9 @@ exit
 Clear-Host
 Write-Host "Installing: 7Zip . . ."
 # download 7zip
-Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/7-Zip.exe" -File "$env:TEMP\7-Zip.exe"
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/7 Zip.exe" -File "$env:TEMP\7 Zip.exe"
 # install 7zip
-Start-Process -wait "$env:TEMP\7-Zip.exe" -ArgumentList "/S"
+Start-Process -wait "$env:TEMP\7 Zip.exe" -ArgumentList "/S"
 show-menu
 
       }
@@ -203,7 +203,7 @@ show-menu
 Clear-Host
 Write-Host "Installing: OBS Studio . . ."
 # download obs studio
-Get-FileFromWeb -URL "https://github.com/obsproject/obs-studio/releases/download/30.2.3/OBS-Studio-30.2.3-Windows-Installer.exe" -File "$env:TEMP\OBS Studio.exe"
+Get-FileFromWeb -URL "https://github.com/obsproject/obs-studio/releases/download/31.0.2/OBS-Studio-31.0.2-Windows-Installer.exe" -File "$env:TEMP\OBS Studio.exe"
 # install obs studio
 Start-Process -wait "$env:TEMP\OBS Studio.exe" -ArgumentList "/S"
 show-menu

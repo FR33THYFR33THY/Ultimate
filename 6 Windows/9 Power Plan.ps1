@@ -178,6 +178,9 @@ powercfg /setacvalueindex 99999999-9999-9999-9999-999999999999 de830923-a562-41a
 Clear-Host
 powercfg /setdcvalueindex 99999999-9999-9999-9999-999999999999 de830923-a562-41af-a086-e3a2c6bad2da e69653ca-cf7f-4f05-aa73-cb833fa90ad4 0x00000000
 Clear-Host
+Write-Host "OLED monitor users: Set 'Turn off the display' to '5 minutes' to prevent burn-in." -ForegroundColor Red
+$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+Clear-Host
 Write-Host "Restart to apply . . ."
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 # open settings

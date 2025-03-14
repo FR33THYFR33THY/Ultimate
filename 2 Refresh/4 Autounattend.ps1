@@ -156,7 +156,7 @@ Set-Content -Path "$env:TEMP\autounattend.xml" -Value $MultilineComment -Force
 $path = "$env:TEMP\autounattend.xml"
 # force user to not leave name blank
 do {
-$username = Read-Host -Prompt "Enter Account Name"
+$username = Read-Host -Prompt "Enter Account Name (No Spaces/Spacebar)"
 } while ([string]::IsNullOrWhiteSpace($username))
 (Get-Content $path) -replace "@",$username | out-file $path
 # convert file to utf8

@@ -43,11 +43,9 @@
 
 Write-Host "Installing: Cpu Z . . ."
 # download cpuz
-Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/Cpu%20Z.zip" -File "$env:TEMP\Cpu Z.zip" 
-# extract files
-Expand-Archive "$env:TEMP\Cpu Z.zip" -DestinationPath "$env:TEMP\Cpu Z" -ErrorAction SilentlyContinue
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/Cpu%20Z.exe" -File "$env:TEMP\Cpu Z.exe"
 # start cpuz
-Start-Process "$env:TEMP\Cpu Z\cpuz_x64.exe"
+Start-Process "$env:TEMP\Cpu Z.exe"
 Clear-Host
 Write-Host "Check (XMP DOCP EXPO) is enabled."
 Write-Host "Verify RAM is in the correct slots."

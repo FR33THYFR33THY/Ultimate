@@ -43,6 +43,11 @@
 
     Write-Host "1. Install: Nvidia Driver (Recommended)"
     Write-Host "2. Install: NvCleanInstall"
+	Write-Host ""
+	Write-Host "Unless recording or using replay buffer, avoid installing the NVIDIA App." -ForegroundColor Red
+	Write-Host "Game Filter (ALT+F3) and Statistics (ALT+R) will significantly reduce FPS when enabled." -ForegroundColor Red
+    Write-Host ""
+
     while ($true) {
     $choice = Read-Host " "
     if ($choice -match '^[1-2]$') {
@@ -53,7 +58,7 @@ Clear-Host
 # clean old files
 Remove-Item -Recurse -Force "$env:TEMP\NvidiaDriver.exe" -ErrorAction SilentlyContinue | Out-Null
 Remove-Item -Recurse -Force "$env:TEMP\NvidiaDriver" -ErrorAction SilentlyContinue | Out-Null
-Remove-Item -Recurse -Force "$env:TEMP\7-Zip.exe" -ErrorAction SilentlyContinue | Out-Null
+Remove-Item -Recurse -Force "$env:TEMP\7 Zip.exe" -ErrorAction SilentlyContinue | Out-Null
 # find latest nvidia driver
 $uri = 'https://gfwsl.geforce.com/services_toolkit/services/com/nvidia/services/AjaxDriverService.php?func=DriverManualLookup&psid=120&pfid=929&osID=57&languageCode=1033&isWHQL=1&dch=1&sort1=0&numberOfResults=1'
 $response = Invoke-WebRequest -Uri $uri -Method GET -UseBasicParsing
@@ -70,9 +75,9 @@ Get-FileFromWeb -URL $url -File "$env:TEMP\NvidiaDriver.exe"
 Clear-Host
 Write-Host "Installing: Nvidia Driver . . ."
 # download 7zip
-Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/7-Zip.exe" -File "$env:TEMP\7-Zip.exe"
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/7 Zip.exe" -File "$env:TEMP\7 Zip.exe"
 # install 7zip
-Start-Process -wait "$env:TEMP\7-Zip.exe" /S
+Start-Process -wait "$env:TEMP\7 Zip.exe" /S
 # extract files with 7zip
 cmd /c "C:\Program Files\7-Zip\7z.exe" x "$env:TEMP\NvidiaDriver.exe" -o"$env:TEMP\NvidiaDriver" -y | Out-Null
 # install nvidia driver

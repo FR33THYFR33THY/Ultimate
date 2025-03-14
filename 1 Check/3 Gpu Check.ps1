@@ -43,11 +43,9 @@
 
 Write-Host "Installing: Gpu Z . . ."
 # download gpuz
-Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/Gpu%20Z.zip" -File "$env:TEMP\Gpu Z.zip"
-# extract files
-Expand-Archive "$env:TEMP\Gpu Z.zip" -DestinationPath "$env:TEMP\Gpu Z" -ErrorAction SilentlyContinue
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/Gpu%20Z.exe" -File "$env:TEMP\Gpu Z.exe"
 # start gpuz
-Start-Process "$env:TEMP\Gpu Z\GPU-Z.2.60.0.exe"
+Start-Process "$env:TEMP\Gpu Z.exe"
 Clear-Host
 Write-Host "Check PCIe bus interface is at maximum."
 Write-Host "Verify monitor cable is connected to the GPU."

@@ -1036,8 +1036,16 @@ E0,F6,C5,D5,0E,CA,50,00,00
 
 
 ; NVIDIA
-; enable old nvidia sharpening
+; enable old nvidia legacy sharpening
+; old location
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\nvlddmkm\FTS]
+"EnableGR535"=dword:00000000
+
+; new location
+[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\nvlddmkm\Parameters\FTS]
+"EnableGR535"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters\FTS]
 "EnableGR535"=dword:00000000
 
 
@@ -2136,8 +2144,16 @@ Windows Registry Editor Version 5.00
 
 
 ; NVIDIA
-; old nvidia sharpening
+; disable old nvidia legacy sharpening
+; old location
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\nvlddmkm\FTS]
+"EnableGR535"=dword:00000001
+
+; new location
+[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\nvlddmkm\Parameters\FTS]
+"EnableGR535"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters\FTS]
 "EnableGR535"=dword:00000001
 
 

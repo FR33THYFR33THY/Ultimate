@@ -2,4 +2,4 @@
 Prop3=19,0
 [InternetShortcut]
 IDList=
-URL=ms-settings:deviceencryption
+URL=C:\Windows\System32\control.exe /name Microsoft.BitLockerDriveEncryption

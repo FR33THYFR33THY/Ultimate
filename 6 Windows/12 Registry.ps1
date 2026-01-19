@@ -1220,47 +1220,6 @@ E0,F6,C5,D5,0E,CA,50,00,00
 ; hide home in settings
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer]
 "SettingsPageVisibility"="hide:home;"
-
-; new 25h2 start menu
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\3036241548]
-"EnabledState"=dword:00000002
-"EnabledStateOptions"=dword:00000000
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\2792562829]
-"EnabledState"=dword:00000002
-"EnabledStateOptions"=dword:00000000
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\762256525]
-"EnabledState"=dword:00000002
-"EnabledStateOptions"=dword:00000000
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\734731404]
-"EnabledState"=dword:00000002
-"EnabledStateOptions"=dword:00000000
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\2114784909]
-"EnabledState"=dword:00000002
-"EnabledStateOptions"=dword:00000000
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\905601679]
-"EnabledState"=dword:00000002
-"EnabledStateOptions"=dword:00000000
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\1853569164]
-"EnabledState"=dword:00000002
-"EnabledStateOptions"=dword:00000000
-
-; set start menu apps view to list
-[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Start]
-"AllAppsViewMode"=dword:00000002
-
-; disable phone companion in start menu
-[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Start]
-"RightCompanionToggledOpen"=dword:00000000
-
-[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Start\Companions\Microsoft.YourPhone_8wekyb3d8bbwe]
-"IsEnabled"=dword:00000000
-"IsAvailable"=dword:00000000
 "@
 Set-Content -Path "$env:TEMP\Registry Optimize.reg" -Value $MultilineComment -Force
 # edit reg file
@@ -2450,47 +2409,6 @@ Windows Registry Editor Version 5.00
 ; home in settings
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer]
 "SettingsPageVisibility"=-
-
-; remove 25h2 start menu
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\3036241548]
-"EnabledState"=-
-"EnabledStateOptions"=-
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\2792562829]
-"EnabledState"=-
-"EnabledStateOptions"=-
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\762256525]
-"EnabledState"=-
-"EnabledStateOptions"=-
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\734731404]
-"EnabledState"=-
-"EnabledStateOptions"=-
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\2114784909]
-"EnabledState"=-
-"EnabledStateOptions"=-
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\905601679]
-"EnabledState"=-
-"EnabledStateOptions"=-
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\14\1853569164]
-"EnabledState"=-
-"EnabledStateOptions"=-
-
-; set start menu apps view to category
-[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Start]
-"AllAppsViewMode"=dword:00000000
-
-; phone companion in start menu
-[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Start]
-"RightCompanionToggledOpen"=-
-
-[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Start\Companions\Microsoft.YourPhone_8wekyb3d8bbwe]
-"IsEnabled"=-
-"IsAvailable"=-
 "@
 Set-Content -Path "$env:TEMP\Registry Defaults.reg" -Value $MultilineComment -Force
 # edit reg file

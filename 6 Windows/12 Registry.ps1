@@ -587,7 +587,7 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Microsoft\GameBar]
 "UseNexusForGameBarEnabled"=dword:00000000
 
-; disable use as guide button in apps
+; disable use view + menu as guide button in apps
 [HKEY_CURRENT_USER\Software\Microsoft\GameBar]
 "GamepadNexusChordEnabled"=dword:00000000
 
@@ -655,7 +655,10 @@ Windows Registry Editor Version 5.00
 
 ; disable language bar
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\CTF\LangBar]
+"ExtraIconsOnMinimized"=dword:00000000
+"Label"=dword:00000000
 "ShowStatus"=dword:00000003
+"Transparency"=dword:000000ff
 
 ; disable language hotkey
 [HKEY_CURRENT_USER\Keyboard Layout\Toggle]
@@ -670,6 +673,10 @@ Windows Registry Editor Version 5.00
 ; disable use my sign in info after restart
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]
 "DisableAutomaticRestartSignOn"=dword:00000001
+
+; disable dynamic lock
+[HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Winlogon]
+"EnableGoodbye"=dword:00000000
 
 
 
@@ -1220,6 +1227,10 @@ E0,F6,C5,D5,0E,CA,50,00,00
 ; hide home in settings
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer]
 "SettingsPageVisibility"="hide:home;"
+
+; disable desktop preview
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"TaskbarSd"=dword:00000000
 "@
 Set-Content -Path "$env:TEMP\Registry Optimize.reg" -Value $MultilineComment -Force
 # edit reg file
@@ -1791,7 +1802,7 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Microsoft\GameBar]
 "UseNexusForGameBarEnabled"=-
 
-; enable use as guide button in apps
+; enable use view + menu as guide button in apps
 [HKEY_CURRENT_USER\Software\Microsoft\GameBar]
 "GamepadNexusChordEnabled"=-
 
@@ -1859,7 +1870,10 @@ Windows Registry Editor Version 5.00
 
 ; language bar
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\CTF\LangBar]
+"ExtraIconsOnMinimized"=-
+"Label"=-
 "ShowStatus"=-
+"Transparency"=-
 
 ; language hotkey
 [HKEY_CURRENT_USER\Keyboard Layout\Toggle]
@@ -1874,6 +1888,10 @@ Windows Registry Editor Version 5.00
 ; use my sign in info after restart
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]
 "DisableAutomaticRestartSignOn"=-
+
+; dynamic lock
+[HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Winlogon]
+"EnableGoodbye"=-
 
 
 
@@ -2409,6 +2427,10 @@ Windows Registry Editor Version 5.00
 ; home in settings
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer]
 "SettingsPageVisibility"=-
+
+; desktop preview
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"TaskbarSd"=-
 "@
 Set-Content -Path "$env:TEMP\Registry Defaults.reg" -Value $MultilineComment -Force
 # edit reg file

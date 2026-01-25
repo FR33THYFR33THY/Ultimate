@@ -56,6 +56,8 @@ reg add "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d "0" /
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\GameDVR" /v "AppCaptureEnabled" /t REG_DWORD /d "0" /f | Out-Null
 # disable open xbox game bar using game controller regedit
 reg add "HKCU\Software\Microsoft\GameBar" /v "UseNexusForGameBarEnabled" /t REG_DWORD /d "0" /f | Out-Null
+# disable use view + menu as guide button in apps regedit
+reg add "HKCU\Software\Microsoft\GameBar" /v "GamepadNexusChordEnabled" /t REG_DWORD /d "0" /f | Out-Null
 # disable gameinput service regedit
 reg add "HKLM\SYSTEM\ControlSet001\Services\GameInputSvc" /v "Start" /t REG_DWORD /d "4" /f | Out-Null
 # disable gamedvr and broadcast user service regedit
@@ -126,6 +128,8 @@ reg add "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d "1" /
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\GameDVR" /v "AppCaptureEnabled" /t REG_DWORD /d "1" /f | Out-Null
 # open xbox game bar using game controller regedit
 cmd.exe /c "reg delete `"HKCU\Software\Microsoft\GameBar`" /v `"UseNexusForGameBarEnabled`" /f >nul 2>&1"
+# use view + menu as guide button in apps regedit
+cmd.exe /c "reg delete `"HKCU\Software\Microsoft\GameBar`" /v `"GamepadNexusChordEnabled`" /f >nul 2>&1"
 # gameinput service
 reg add "HKLM\SYSTEM\ControlSet001\Services\GameInputSvc" /v "Start" /t REG_DWORD /d "3" /f | Out-Null
 # gamedvr and broadcast user service regedit

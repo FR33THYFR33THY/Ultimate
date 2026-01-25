@@ -8,6 +8,7 @@
     Clear-Host
 
 # get motherboard id
-$instanceID = (wmic baseboard get product)
+$instanceID = (Get-CimInstance Win32_BaseBoard).Product
+$query = [uri]::EscapeDataString($instanceID)
 # search motherboard id in web browser
-Start-Process "https://www.google.com/search?q=$instanceID"
+Start-Process "https://www.google.com/search?q=$query"

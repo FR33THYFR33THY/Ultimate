@@ -175,6 +175,14 @@ Write-Host "Installing: Google Chrome . . ."
 Get-FileFromWeb -URL "https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi" -File "$env:TEMP\Chrome.msi"
 # install google chrome
 Start-Process -wait "$env:TEMP\Chrome.msi" -ArgumentList "/quiet"
+# chrome tweaks
+Reg.exe add 'HKLM\SOFTWARE\Policies\Google\Chrome' /v 'StartupBoostEnabled' /t REG_DWORD /d '0' /f | Out-Null
+Reg.exe add 'HKLM\SOFTWARE\Policies\Google\Chrome' /v 'HardwareAccelerationModeEnabled' /t REG_DWORD /d '0' /f | Out-Null
+Reg.exe add 'HKLM\SOFTWARE\Policies\Google\Chrome' /v 'BackgroundModeEnabled' /t REG_DWORD /d '0' /f | Out-Null
+Reg.exe add 'HKLM\SOFTWARE\Policies\Google\Chrome' /v 'HighEfficiencyModeEnabled' /t REG_DWORD /d '1' /f | Out-Null
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\GoogleChromeElevationService" /v Start /t REG_DWORD /d 4 /f | Out-Null
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\gupdate" /v Start /t REG_DWORD /d 4 /f | Out-Null
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\gupdatem" /v Start /t REG_DWORD /d 4 /f | Out-Null
 # open ublock origin in web browser
 Start-Process "C:\Program Files\Google\Chrome\Application\chrome.exe" "https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh?hl=en"
 show-menu

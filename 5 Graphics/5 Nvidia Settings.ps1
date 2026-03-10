@@ -62,7 +62,7 @@ $MultilineComment = @"
 <ArrayOfProfile>
   <Profile>
     <ProfileName>Base Profile</ProfileName>
-    <Executeables />
+    <Executables />
     <Settings>
       <ProfileSetting>
         <SettingNameInfo>Frame Rate Limiter V3</SettingNameInfo>

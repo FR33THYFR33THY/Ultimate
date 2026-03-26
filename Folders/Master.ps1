@@ -3,8 +3,8 @@
 # ================================
 
 # ---------- CONFIG ----------
-$Repo        = "gameshler/Ultimate-Windows-Optimization-Guide"
-$Branch      = "main"
+$Repo        = "gameshler/Ultimate"
+$Branch      = "dev"
 $InstallDir  = Join-Path $env:USERPROFILE "Downloads\UWOG"
 $TempDir     = Join-Path $env:TEMP ("uwog-" + [guid]::NewGuid())
 $ZipPath     = "$TempDir.zip"
@@ -44,7 +44,7 @@ function Invoke-Bootstrap {
 
     Expand-Archive -Path $ZipPath -DestinationPath $TempDir -Force
 
-    $ExtractedDir = Join-Path $TempDir "Ultimate-Windows-Optimization-Guide-$Branch"
+    $ExtractedDir = Join-Path $TempDir "Ultimate-$Branch"
 
     if (-not (Test-Path $ExtractedDir)) {
       throw "Extraction failed."
@@ -79,7 +79,7 @@ function Invoke-Bootstrap {
 
 function Initialize-Environment {
 
-  $Host.UI.RawUI.WindowTitle = "Gameshler Ultimate Windows Optimization Guide"
+  $Host.UI.RawUI.WindowTitle = "Gameshler Ultimate"
   $Host.UI.RawUI.BackgroundColor = "Black"
   $Host.PrivateData.ProgressBackgroundColor = "Black"
   $Host.PrivateData.ProgressForegroundColor = "White"

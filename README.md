@@ -10,7 +10,7 @@ The definitive Windows optimization guide for power users seeking to enhance the
 ## System Automation
 
 ```ps1
-iwr https://raw.githubusercontent.com/gameshler/Ultimate-Windows-Optimization-Guide/main/Folders/Master.ps1 -useb | iex
+iwr https://raw.githubusercontent.com/gameshler/Ultimate/main/Folders/Master.ps1 -useb | iex
 ```
 
 ## Features

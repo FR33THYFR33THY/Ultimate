@@ -2,11 +2,10 @@
 
 Ensure-Admin
 
-Write-Host "Remove Ethernet cable during the Windows installation . . ." -ForegroundColor Red
-$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
-Clear-Host
-# save autounattend config
-$MultilineComment = @"
+Write-Host "Remove Ethernet Cable During The Windows Installation..." -ForegroundColor Red
+
+# save autounattendtemplate
+$AutoUnattend = @'
 <?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
     <settings pass="oobeSystem">
@@ -145,23 +144,29 @@ $MultilineComment = @"
         </component>
     </settings>
 </unattend>
-"@
-Set-Content -Path "$env:TEMP\autounattend.xml" -Value $MultilineComment -Force
-# user input change account name in autounattend
-$path = "$env:TEMP\autounattend.xml"
+'@
+Set-Content -Path "$env:SystemRoot\Temp\autounattendtemplate.xml" -Value $AutoUnattend -Force
+
+# user input change account name in autounattendtemplate
+$path = "$env:SystemRoot\Temp\autounattendtemplate.xml"
+
 # force user to not leave name blank
 do {
 $username = Read-Host -Prompt "Enter Account Name (No Spaces/Spacebar)"
 } while ([string]::IsNullOrWhiteSpace($username))
 (Get-Content $path) -replace "@",$username | out-file $path
-# convert file to utf8
-Get-Content "$env:TEMP\autounattend.xml" | Set-Content -Encoding utf8 "$env:SystemDrive\Windows\Temp\autounattend.xml" -Force
-# delete old autounattend file
-Remove-Item -Path "$env:TEMP\autounattend.xml" -Force | Out-Null
+
+# create autounattendxml & convert file to utf8
+Get-Content "$env:SystemRoot\Temp\autounattendtemplate.xml" | Set-Content -Encoding utf8 "$env:SystemRoot\Temp\autounattend.xml" -Force
+
+# delete autounattendtemplate file
+Remove-Item -Path "$env:SystemRoot\Temp\autounattendtemplate.xml" -Force | Out-Null
+
 # user input move autounattend to USB
-$file = "$env:SystemDrive\Windows\Temp\autounattend.xml"
+$file = "$env:SystemRoot\Temp\autounattend.xml"
 $destination = Read-Host -prompt "Enter USB Drive Letter" 
 $destination += ":\"
 Move-Item -Path $file -Destination $destination -Force
+
 # open USB directory to confirm
 Start-Process $destination

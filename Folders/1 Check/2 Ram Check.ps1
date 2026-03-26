@@ -8,8 +8,7 @@ if (!(Test-Connection -ComputerName "8.8.8.8" -Count 1 -Quiet -ErrorAction Silen
  Pause
  exit
 }
-
-        
+   
 Write-Host "Downloading: Cpu Z..."
 
 # download cpuz

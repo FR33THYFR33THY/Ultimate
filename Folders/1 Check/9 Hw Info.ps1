@@ -1,9 +1,12 @@
 . $CommonScript
 
 Ensure-Admin
+Test-Connection
 
-Write-Host "Installing: Hw Info . . ."
+Write-Host "Downloading: Hw Info..."
+
 # download hwinfo
-Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/Hw%20Info.exe" -File "$env:TEMP\Hw Info.exe"
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/Hw%20Info.exe" -File "$env:SystemRoot\Temp\Hw Info.exe"
+
 # start hwinfo
-Start-Process "$env:TEMP\Hw Info.exe"
+Start-Process "$env:SystemRoot\Temp\Hw Info.exe"

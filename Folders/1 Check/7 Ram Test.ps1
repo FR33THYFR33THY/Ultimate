@@ -1,14 +1,18 @@
 . $CommonScript
 
 Ensure-Admin
+Test-Connection
 
-Write-Host "Installing: TM5 . . ."
+Write-Host "Downloading: TM5..."
+
 # download tm5
-$result = Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/TM5.zip" -File "$env:TEMP\TM5.zip"
+$result = Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/TM5.zip" -File "$env:SystemRoot\Temp\TM5.zip"
+
 # extract files
-Expand-Archive "$env:TEMP\TM5.zip" -DestinationPath "$env:TEMP\TM5" -ErrorAction SilentlyContinue
+Expand-Archive "$env:SystemRoot\Temp\TM5.zip" -DestinationPath "$env:SystemRoot\Temp\TM5" -ErrorAction SilentlyContinue
+
 # create config for tm5
-$MultilineComment = @"
+$Tm5Config = @'
 Memory Test config file v0.02
 Copyrights to the program belong to me.
 Serj
@@ -215,39 +219,43 @@ Pattern Param0=0x0
 Pattern Param1=0x0
 Parameter=256
 Test Block Size (Mb)=0
-"@
-Set-Content -Path "$env:TEMP\TM5\bin\MT.cfg" -Value $MultilineComment -Force
+'@
+Set-Content -Path "$env:SystemRoot\Temp\TM5\bin\MT.cfg" -Value $Tm5Config -Force
+
 # set config to read only
-Set-ItemProperty -Path "$env:TEMP\TM5\bin\MT.cfg" -Name IsReadOnly -Value $true
+Set-ItemProperty -Path "$env:SystemRoot\Temp\TM5\bin\MT.cfg" -Name IsReadOnly -Value $true
+
 # start tm5
-Start-Process "$env:TEMP\TM5\TM5.exe"
+Start-Process "$env:SystemRoot\Temp\TM5\TM5.exe"
+
 Clear-Host
-Write-Host "Run a basic RAM stress test to check for errors."
-Write-Host "Check temps and WHEA errors in Hw Info during this test."
-Write-Host "TM5 will run three cycles."
+Write-Host "Run a basic RAM stress test to check for errors"
+Write-Host "Check temps and WHEA errors in Hw Info during this test"
+Write-Host "TM5 will run three cycles"
 Write-Host ""
 Write-Host "CPU and RAM errors should not be ignored as they can lead to:"
-Write-Host "-Corrupted Windows"
-Write-Host "-Corrupted files"
-Write-Host "-Stutters and hitches"
-Write-Host "-Poor performance"
-Write-Host "-Input lag"
-Write-Host "-Shutdowns"
-Write-Host "-Blue screens"
+Write-Host "- Corrupted Windows"
+Write-Host "- Corrupted files"
+Write-Host "- Stutters and hitches"
+Write-Host "- Poor performance"
+Write-Host "- Input lag"
+Write-Host "- Shutdowns"
+Write-Host "- Blue screens"
 Write-Host ""
 Write-Host "Basic troubleshooting for errors or issues running XMP DOCP EXPO:"
-Write-Host "-BIOS out of date? (update)"
-Write-Host "-BIOS bugged out? (clear CMOS)"
-Write-Host "-Incompatible RAM? (check QVL)"
-Write-Host "-Mismatched RAM? (replace)"
-Write-Host "-RAM in wrong slots? (check manual)"
-Write-Host "-Unlucky CPU memory controller? (lower RAM speed)"
-Write-Host "-Overclock? (turn it off/dial it down)"
-Write-Host "-CPU cooler overtightened? (loosen)"
-Write-Host "-CPU overheating? (repaste/retighten/RMA cooler)"
-Write-Host "-RAM overheating? Typically over 55deg. (fix case flow/ram fan)"
-Write-Host "-Faulty RAM stick? (RMA)"
-Write-Host "-Faulty motherboard? (RMA)"
-Write-Host "-Faulty CPU? (RMA)"
-Write-Host "-Bent CPU pin? (RMA)"
-$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+Write-Host "- BIOS out of date? (update)"
+Write-Host "- BIOS bugged out? (clear CMOS)"
+Write-Host "- Incompatible RAM? (check QVL)"
+Write-Host "- Mismatched RAM? (replace)"
+Write-Host "- RAM in wrong slots? (check manual)"
+Write-Host "- Unlucky CPU memory controller? (lower RAM speed)"
+Write-Host "- Overclock? (turn it off/dial it down)"
+Write-Host "- CPU cooler overtightened? (loosen)"
+Write-Host "- CPU overheating? (repaste/retighten/RMA cooler)"
+Write-Host "- RAM overheating? Typically over 55deg. (fix case flow/ram fan)"
+Write-Host "- Faulty RAM stick? (RMA)"
+Write-Host "- Faulty motherboard? (RMA)"
+Write-Host "- Faulty CPU? (RMA)"
+Write-Host "- Bent CPU pin? (RMA)`n"
+
+Pause

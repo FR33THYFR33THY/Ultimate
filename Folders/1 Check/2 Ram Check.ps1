@@ -1,13 +1,7 @@
 . $CommonScript
 
 Ensure-Admin
-
-# SCRIPT CHECK INTERNET
-if (!(Test-Connection -ComputerName "8.8.8.8" -Count 1 -Quiet -ErrorAction SilentlyContinue)) {
- Write-Host "Internet Connection Required`n" -ForegroundColor Red
- Pause
- exit
-}
+Test-Connection
    
 Write-Host "Downloading: Cpu Z..."
 

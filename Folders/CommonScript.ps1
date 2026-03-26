@@ -129,4 +129,12 @@ function Get-FileFromWeb {
     }
     return $OpenFileDialog.FileName
     }
-
+    
+# CHECK INTERNET    
+function Test-Connection {
+    if (!(Test-Connection -ComputerName "8.8.8.8" -Count 1 -Quiet -ErrorAction SilentlyContinue)) {
+     Write-Host "Internet Connection Required`n" -ForegroundColor Red
+     Pause
+     exit
+    }
+}

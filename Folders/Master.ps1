@@ -8,6 +8,7 @@ $Branch      = "dev"
 $InstallDir  = Join-Path $env:USERPROFILE "Downloads\UWOG"
 $TempDir     = Join-Path $env:TEMP ("uwog-" + [guid]::NewGuid())
 $ZipPath     = "$TempDir.zip"
+$TempPath    = Join-Path $env:SystemRoot 'Temp\*'
 $CommonScript = Join-Path $InstallDir "Folders\CommonScript.ps1"
 
 # ---------- GLOBALS ----------
@@ -91,7 +92,8 @@ function Initialize-Environment {
 
 function Cleanup {
   Write-Host "`nCleaning up..." -ForegroundColor Yellow
-
+  Remove-Item $TempPath -Recurse -Force -ErrorAction SilentlyContinue
+  
   $choice = Read-Host "Delete installation files in $InstallDir? [y/N]"
   if ($choice -match '^[Yy]$') {
     Remove-Item $InstallDir -Recurse -Force -ErrorAction SilentlyContinue

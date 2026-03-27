@@ -3,6 +3,10 @@
 Ensure-Admin
 Test-Connection
 
+        # SCRIPT SILENT
+        $progresspreference = 'silentlycontinue'
+
+
         Write-Host "WINDOWS PRO/LTSC/IOT/SERVER ONLY:"
         Write-Host "1. Windows Updates: Default"
         Write-Host "2. Windows Updates: Off`n"

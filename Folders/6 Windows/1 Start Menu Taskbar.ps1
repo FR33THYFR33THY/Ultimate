@@ -2,6 +2,8 @@
 
 Ensure-Admin
 
+        # SCRIPT SILENT
+        $progresspreference = 'silentlycontinue'
 
         Write-Host "1. Start Menu Taskbar: Clean (Recommended)"
         Write-Host "2. Start Menu Taskbar: Default`n"

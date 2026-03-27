@@ -2,6 +2,9 @@
 
 Ensure-Admin
 
+        # SCRIPT SILENT
+        $progresspreference = 'silentlycontinue'
+
         Write-Host "1. Network IPv4: Only (Recommended)"
         Write-Host "2. Network: Default`n"
         while ($true) {

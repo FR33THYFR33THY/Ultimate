@@ -10,7 +10,8 @@ Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/Mouse%20M
 
 # create desktop shortcut
 $WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Mouse Movement Recorder.lnk")
+$Desktop = (New-Object -ComObject Shell.Application).Namespace('shell:Desktop').Self.Path
+$Shortcut = $WshShell.CreateShortcut("$Desktop\Mouse Movement Recorder.lnk")
 $Shortcut.TargetPath = "$env:SystemDrive\Program Files (x86)\Mouse Movement Recorder\Mouse Movement Recorder.exe"
 $Shortcut.IconLocation = "%SystemRoot%\System32\shell32.dll,248"
 $Shortcut.Save()

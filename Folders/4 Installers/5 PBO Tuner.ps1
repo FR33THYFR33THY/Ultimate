@@ -3,6 +3,10 @@
 Ensure-Admin
 Test-Connection
 
+# SCRIPT SILENT
+$progresspreference = 'silentlycontinue'
+
+
 ## explorer "https://www.overclock.net/threads/corecycler-tool-for-testing-single-core-stability-e-g-curve-optimizer-settings.1777398/page-45#post-28999750"
 Write-Host "Installing: PBO2 Tuner..."
 Write-Host "AM4 CPUS only, 5000 series and below`n" -ForegroundColor Red
@@ -15,7 +19,8 @@ Expand-Archive -Path "$env:SystemRoot\Temp\PBO2 Tuner.zip" -DestinationPath "$en
 
 # create desktop shortcut
 $WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\PBO2 Tuner.lnk")
+$Desktop = (New-Object -ComObject Shell.Application).Namespace('shell:Desktop').Self.Path
+$Shortcut = $WshShell.CreateShortcut("$Desktop\PBO2 Tuner.lnk")
 $Shortcut.TargetPath = "$env:SystemDrive\Program Files (x86)\PBO2 Tuner\PBO2 Tuner.exe"
 $Shortcut.Save()
 

@@ -1,4 +1,4 @@
-	. $CommonScript
+. $CommonScript
 
 Ensure-Admin
 

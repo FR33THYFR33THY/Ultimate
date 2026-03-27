@@ -3,6 +3,10 @@
 Ensure-Admin
 Test-Connection
 
+# SCRIPT SILENT
+$progresspreference = 'silentlycontinue'
+
+
 Write-Host "Downloading: TM5..."
 
 # download tm5
@@ -231,8 +235,7 @@ Start-Process "$env:SystemRoot\Temp\TM5\TM5.exe"
 Clear-Host
 Write-Host "Run a basic RAM stress test to check for errors"
 Write-Host "Check temps and WHEA errors in Hw Info during this test"
-Write-Host "TM5 will run three cycles"
-Write-Host ""
+Write-Host "TM5 will run three cycles`n"
 Write-Host "CPU and RAM errors should not be ignored as they can lead to:"
 Write-Host "- Corrupted Windows"
 Write-Host "- Corrupted files"
@@ -240,8 +243,7 @@ Write-Host "- Stutters and hitches"
 Write-Host "- Poor performance"
 Write-Host "- Input lag"
 Write-Host "- Shutdowns"
-Write-Host "- Blue screens"
-Write-Host ""
+Write-Host "- Blue screens`n"
 Write-Host "Basic troubleshooting for errors or issues running XMP DOCP EXPO:"
 Write-Host "- BIOS out of date? (update)"
 Write-Host "- BIOS bugged out? (clear CMOS)"

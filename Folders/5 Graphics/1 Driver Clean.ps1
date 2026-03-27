@@ -3,6 +3,10 @@
 Ensure-Admin
 Test-Connection
 
+        # SCRIPT SILENT
+        $progresspreference = 'silentlycontinue'
+
+
         Write-Host "1. DDU: Auto"
         Write-Host "2. DDU: Manual`n"
         while ($true) {

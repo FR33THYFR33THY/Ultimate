@@ -3,6 +3,10 @@
 Ensure-Admin
 Test-Connection
 
+        # SCRIPT SILENT
+        $progresspreference = 'silentlycontinue'
+
+
         Write-Host "SELECT YOUR SYSTEM'S GPU`n" -ForegroundColor Yellow
         Write-Host " 1.  NVIDIA" -ForegroundColor Green
         Write-Host " 2.  AMD" -ForegroundColor Red

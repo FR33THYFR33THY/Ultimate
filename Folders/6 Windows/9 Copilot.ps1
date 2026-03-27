@@ -2,6 +2,9 @@
 
 Ensure-Admin
 
+        # SCRIPT SILENT
+        $progresspreference = 'silentlycontinue'
+
         Write-Host "1. Copilot: Off (Recommended)"
         Write-Host "2. Copilot: Default`n"
         while ($true) {

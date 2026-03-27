@@ -10,7 +10,8 @@ Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/refs/heads/mai
 
 # create desktop shortcut
 $WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Polling.lnk")
+$Desktop = (New-Object -ComObject Shell.Application).Namespace('shell:Desktop').Self.Path
+$Shortcut = $WshShell.CreateShortcut("$Desktop\Polling.lnk")
 $Shortcut.TargetPath = "$env:SystemDrive\Program Files (x86)\Polling\Polling.exe"
 $Shortcut.Save()
 

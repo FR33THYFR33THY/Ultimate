@@ -8,12 +8,10 @@ Test-Connection
 	    Write-Host "Game launchers, programs and web browsers:"
         Write-Host "- Disable hardware acceleration"
         Write-Host "- Turn off running at startup"
-        Write-Host "- Deactivate overlays"
-        Write-Host ""
+        Write-Host "- Deactivate overlays`n"
         Write-Host "Lower GPU usage and higher framerates reduce latency"
         Write-Host "Optimize your game settings to achieve this"
-        Write-Host "Further tuning can be done via config files or launch options"
-	    Write-Host ""
+        Write-Host "Further tuning can be done via config files or launch options`n"
         Write-Host " 1. Exit"
 	    Write-Host " 2. Discord"
 	    Write-Host " 3. Roblox"
@@ -120,7 +118,8 @@ Remove-Item "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\7-Zip" -Recu
 
 # create 7zip shortcut
 $WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\7-Zip File Manager.lnk")
+$Desktop = (New-Object -ComObject Shell.Application).Namespace('shell:Desktop').Self.Path
+$Shortcut = $WshShell.CreateShortcut("$Desktop\7-Zip File Manager.lnk")
 $Shortcut.TargetPath = "$env:SystemDrive\Program Files\7-Zip\7zFM.exe"
 $Shortcut.Save()
 
@@ -249,7 +248,8 @@ Start-Process -Wait "$env:SystemRoot\Temp\Escape From Tarkov.exe" -ArgumentList 
 
 # create escape from tarkov shortcut
 $WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Battlestate Games Launcher.lnk")
+$Desktop = (New-Object -ComObject Shell.Application).Namespace('shell:Desktop').Self.Path
+$Shortcut = $WshShell.CreateShortcut("$Desktop\Battlestate Games Launcher.lnk")
 $Shortcut.TargetPath = "$env:SystemDrive\Battlestate Games\BsgLauncher\BsgLauncher.exe"
 $Shortcut.Save()
 
@@ -485,7 +485,8 @@ Set-Content -Path "$env:AppData\Notepad++\config.xml" -Value $NotePadConfig -For
 
 # create notepad ++ shortcut
 $WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Notepad++.lnk")
+$Desktop = (New-Object -ComObject Shell.Application).Namespace('shell:Desktop').Self.Path
+$Shortcut = $WshShell.CreateShortcut("$Desktop\Notepad++.lnk")
 $Shortcut.TargetPath = "$env:SystemDrive\Program Files\Notepad++\notepad++.exe"
 $Shortcut.Save()
 
@@ -537,7 +538,8 @@ Get-FileFromWeb -URL "https://download01.logi.com/web/ftp/pub/techsupport/gaming
 
 # create desktop shortcut
 $WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Onboard Memory Manager.lnk")
+$Desktop = (New-Object -ComObject Shell.Application).Namespace('shell:Desktop').Self.Path
+$Shortcut = $WshShell.CreateShortcut("$Desktop\Onboard Memory Manager.lnk")
 $Shortcut.TargetPath = "$env:SystemDrive\Program Files (x86)\Onboard Memory Manager\Onboard Memory Manager.exe"
 $Shortcut.Save()
 

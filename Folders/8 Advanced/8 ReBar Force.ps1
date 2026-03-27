@@ -1,7 +1,7 @@
 . $CommonScript
 
 Ensure-Admin
-Test-Connection
+Testing-Connection
 
         # DOWNLOAD NVIDIA PROFILE INSPECTOR
         Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/refs/heads/main/Inspector.exe" -File "$env:SystemRoot\Temp\Inspector.exe"

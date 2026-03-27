@@ -1,7 +1,7 @@
 . $CommonScript
 
 Ensure-Admin
-Test-Connection
+Testing-Connection
 
 ## explorer "https://www.guru3d.com/download/msi-afterburner-beta-download"
 Write-Host "Installing: MSI Afterburner. Please wait...`n"

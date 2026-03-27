@@ -1,7 +1,7 @@
 . $CommonScript
 
 Ensure-Admin
-Test-Connection
+Testing-Connection
 
 ## explorer "https://github.com/Orbmu2k/nvidiaProfileInspector/releases"
 Write-Host "Installing: Nvidia Profile Inspector..."

@@ -1,7 +1,7 @@
 . $CommonScript
 
 Ensure-Admin
-Test-Connection
+Testing-Connection
 
 Write-Host "Downloading: Direct X..."
 

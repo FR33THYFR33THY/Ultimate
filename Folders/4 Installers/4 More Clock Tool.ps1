@@ -1,7 +1,7 @@
 . $CommonScript
 
 Ensure-Admin
-Test-Connection
+Testing-Connection
 
 ## explorer "https://www.igorslab.de/en/download-area-new-version-of-morepowertool-mpt-and-final-release-of-redbioseditor-rbe"
 ## explorer "https://www.igorslab.de/installer/MoreClockTool_v1111_2.zip"

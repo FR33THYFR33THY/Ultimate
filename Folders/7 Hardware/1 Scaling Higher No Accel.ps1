@@ -1,7 +1,7 @@
 . $CommonScript
 
 Ensure-Admin
-Test-Connection
+Testing-Connection
 
         Write-Host "Higher Scaling With No Acceleration`n"
         Write-Host "1. 100%"

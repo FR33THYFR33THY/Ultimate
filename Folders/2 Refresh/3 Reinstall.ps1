@@ -1,7 +1,7 @@
 . $CommonScript
 
 Ensure-Admin
-Test-Connection
+Testing-Connection
 
         Write-Host "1. Reinstall: W10"
         Write-Host "2. Reinstall: W11`n"

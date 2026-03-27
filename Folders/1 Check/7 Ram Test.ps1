@@ -1,7 +1,7 @@
 . $CommonScript
 
 Ensure-Admin
-Test-Connection
+Testing-Connection
 
 # SCRIPT SILENT
 $progresspreference = 'silentlycontinue'

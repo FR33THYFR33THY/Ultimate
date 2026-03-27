@@ -1,344 +1,416 @@
 . $CommonScript
 
 Ensure-Admin
+Test-Connection
 
-function show-menu {
-    Clear-Host
-    Write-Host "Game launchers, programs and web browsers:" -ForegroundColor Green
-    Write-Host "-Disable hardware acceleration" -ForegroundColor Green
-    Write-Host "-Turn off running at startup" -ForegroundColor Green
-    Write-Host "-Deactivate overlays" -ForegroundColor Green
-    Write-Host ""
-    Write-Host "Lower GPU usage and higher framerates reduce latency." -ForegroundColor Green
-    Write-Host "Optimize your game settings to achieve this." -ForegroundColor Green
-    Write-Host "Further tuning can be done via config files or launch options." -ForegroundColor Green
-    Write-Host ""
-    Write-Host " 1. 7-Zip" -ForegroundColor Cyan
-    Write-Host " 2. Discord"  -ForegroundColor Cyan
-    Write-Host " 3. Escape From Tarkov"  -ForegroundColor Cyan
-    Write-Host " 4. League Of Legends"  -ForegroundColor Cyan
-    Write-Host " 5. Notepad ++"  -ForegroundColor Cyan
-    Write-Host " 6. OBS Studio"  -ForegroundColor Cyan
-    Write-Host " 7. Roblox"  -ForegroundColor Cyan
-    Write-Host " 8. Valorant"  -ForegroundColor Cyan
-    Write-Host " 9. Plutonium"  -ForegroundColor Cyan
-    Write-Host "10. Faceit Launcher"  -ForegroundColor Cyan
-    Write-Host "11. Microsoft Office 2024 LSTC Edition"  -ForegroundColor Cyan
-    Write-Host "12. Web Browsers" -ForegroundColor Cyan
-    Write-Host "13. Game Platforms" -ForegroundColor Cyan
-    Write-Host "14. Activation Windows / Office" -ForegroundColor Cyan
-    Write-Host " 0. Back" -ForegroundColor Red
-}
-function show-browser-menu {
-    Clear-Host
-    Write-Host "1. Google Chrome" -ForegroundColor Cyan
-    Write-Host "2. Firefox" -ForegroundColor Cyan
-    Write-Host "3. Thorium" -ForegroundColor Cyan
-    Write-Host "4. Brave" -ForegroundColor Cyan
-    Write-Host "5. LibreWolf" -ForegroundColor Cyan
-    Write-Host "0. Back" -ForegroundColor Red
-
-    while ($true) {
-        $choice = Read-Host ">"
-
-        $chromiumExtensions = @(
-            "https://chromewebstore.google.com/detail/context-menu-search/ocpcmghnefmdhljkoiapafejjohldoga",
-            "https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh",
-            "https://chromewebstore.google.com/detail/decentraleyes/ldpochfccmkkmhdbclfhpagapcfdljkj",
-            "https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle",
-            "https://chromewebstore.google.com/detail/extensity/jjmflmamggggndanpgfnpelongoepncg",
-            "https://chromewebstore.google.com/detail/https-everywhere/ikclbgejgcbdlhjmckecmdljlpbhmbmf",
-            "https://chromewebstore.google.com/detail/privacy-badger/pkehgijcmpdhfbdbbnkijodmdjhbjlgp",
-            "https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi",
-            "https://chromewebstore.google.com/detail/search-by-image/cnojnbdhbhnkbcieeekonklommdnndci",
-            "https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh"
-        )
-        $firefoxExtensions = @(
-            "https://addons.mozilla.org/en-GB/firefox/addon/decentraleyes/",
-            "https://addons.mozilla.org/en-GB/firefox/addon/ublock-origin/",
-            "https://addons.mozilla.org/en-GB/firefox/addon/privacy-badger17/",
-            "https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/",
-            "https://addons.mozilla.org/en-GB/firefox/addon/search_by_image/",
-            "https://addons.mozilla.org/en-GB/firefox/addon/darkreader/"
-        )
-        if ($choice -match '^\d+$') {
-            switch ([int]$choice) {
-                1 {
-                    
-                    Clear-Host
-                    Write-Host "Installing: Google Chrome . . ."
-                    # download google chrome
-                    Get-FileFromWeb -URL "https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi" -File "$env:TEMP\Chrome.msi"
-                    # install google chrome
-                    Start-Process -wait "$env:TEMP\Chrome.msi" -ArgumentList "/quiet"
-                    # open ublock origin in web browser
-                    $chromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe" | Where-Object { Test-Path $_ } | Select-Object -First 1
-                    if ($chromePath) {
-                        Start-Process -FilePath $chromePath -ArgumentList $chromiumExtensions
-                    }
-                    return
-                }
-                2 {
-                    Clear-Host
-                    Write-Host "Installing: Firefox . . ."
-                    # download firefox
-                    Get-FileFromWeb -URL "https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-GB" -File "$env:TEMP\Firefox Installer.exe"
-                    # install firefox
-                    Start-Process -wait "$env:TEMP\Firefox Installer.exe" -ArgumentList "/S" -Wait -NoNewWindow
-                    $firefoxPaths = @(
-                        "C:\Program Files\Mozilla Firefox\firefox.exe",
-                        "C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
-                    )
-                    
-                    $firefoxPath = $firefoxPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
-                    if ($firefoxPath) {
-                        Start-Process -FilePath $firefoxPath -ArgumentList $firefoxExtensions
-                    }
-                    Start-Process -FilePath "C:\Program Files (x86)\Mozilla Maintenance Service\uninstall.exe" -ArgumentList "/S" -WindowStyle Hidden -Wait
-                    
-                    return
-                }
-                3 {
-                    Clear-Host
-                    Write-Host "Installing: Thorium Browser . . ."
-                    # download thorium browser
-                    Get-FileFromWeb -URL "https://github.com/Alex313031/Thorium-Win/releases/download/M138.0.7204.303/thorium_AVX2_mini_installer.exe" -File "$env:TEMP\Thorium Browser.exe"
-                    # install thorium browser
-                    Start-Process -wait "$env:TEMP\Thorium Browser.exe" -ArgumentList "/S"
-                    $thoriumPaths = @(
-                        "$env:LOCALAPPDATA\Thorium\Application\thorium.exe"
-                    )
-                    $thoriumPath = $thoriumPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
-                    if ($thoriumPath) {
-                        Start-Process -FilePath $thoriumPath -ArgumentList $chromiumExtensions
-                    }
-                    return
-                }
-                4 {
-                    Clear-Host
-                    Write-Host "Installing: Brave Browser . . ."
-                    # download brave browser
-                    Get-FileFromWeb -URL "https://laptop-updates.brave.com/latest/winx64" -File "$env:TEMP\BraveBrowserSetup.exe"
-                    # install brave browser
-                    Start-Process -wait "$env:TEMP\BraveBrowserSetup.exe" -ArgumentList "/silent", "/install"
-                    $bravePaths = @(
-                        "$env:LOCALAPPDATA\BraveSoftware\Brave-Browser\Application\brave.exe",
-                        "C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
-                    )
-                    $bravePath = $bravePaths | Where-Object { Test-Path $_ } | Select-Object -First 1
-                    if ($bravePath) {
-                        Start-Process -FilePath $bravePath -ArgumentList $chromiumExtensions
-                    }
-                    return
-                }
-                5 {
-                    Clear-Host
-                    Write-Host "Installing: LibreWolf . . ."
-                    #download librewolf browser 
-                    Get-FileFromWeb -URL "https://dl.librewolf.net/librewolf/148.0.2-3/librewolf-148.0.2-3-windows-x86_64-setup.exe" -File "$env:TEMP\LibreWolf.exe"
-                    Start-Process -wait "$env:TEMP\LibreWolf.exe" -ArgumentList "/S"
-                    $librePath = "C:\Program Files\LibreWolf\librewolf.exe" | Where-Object { Test-Path $_ } | Select-Object -First 1
-                    if ($librePath) {
-                        Start-Process -FilePath $librePath -ArgumentList $firefoxExtensions
-                    }
-                    return
-                }
-                0 {
-                    Clear-Host
-                    return 
-                }
-                default {
-                    Write-Host "Invalid choice." -ForegroundColor Red
-                }
-                
-            }
-        } else {
-                Write-Host "Invalid input. Please select a valid option (1-5)." -ForegroundColor Red
-        }
-    }
-}
-function show-game-platforms-menu {
-    Clear-Host
-    Write-Host "1. Battle.net" -ForegroundColor Cyan
-    Write-Host "2. Electronic Arts" -ForegroundColor Cyan
-    Write-Host "3. Epic Games" -ForegroundColor Cyan
-    Write-Host "4. GOG launcher" -ForegroundColor Cyan
-    Write-Host "5. Rockstar Games" -ForegroundColor Cyan
-    Write-Host "6. Steam" -ForegroundColor Cyan
-    Write-Host "7. Ubisoft Connect" -ForegroundColor Cyan
-    Write-Host "0. Back" -ForegroundColor Red
-
-    while ($true) {
+        function show-menu {
+	    Clear-Host
+	    Write-Host "Game launchers, programs and web browsers:"
+        Write-Host "- Disable hardware acceleration"
+        Write-Host "- Turn off running at startup"
+        Write-Host "- Deactivate overlays"
+        Write-Host ""
+        Write-Host "Lower GPU usage and higher framerates reduce latency"
+        Write-Host "Optimize your game settings to achieve this"
+        Write-Host "Further tuning can be done via config files or launch options"
+	    Write-Host ""
+        Write-Host " 1. Exit"
+	    Write-Host " 2. Discord"
+	    Write-Host " 3. Roblox"
+        Write-Host " 4. 7-Zip"
+        Write-Host " 5. Battle.net"
+        Write-Host " 6. Brave"
+        Write-Host " 7. Electronic Arts"
+        Write-Host " 8. Epic Games"
+        Write-Host " 9. Escape From Tarkov"
+        Write-Host "10. Firefox"
+        Write-Host "11. Frame View"		
+        Write-Host "12. GOG launcher"
+        Write-Host "13. Google Chrome"
+        Write-Host "14. League Of Legends"
+        Write-Host "15. Notepad ++"
+        Write-Host "16. Nvidia App"
+        Write-Host "17. OBS Studio"
+        Write-Host "18. Onboard Memory Manager"
+		Write-Host "19. Pot Player"		
+        Write-Host "20. Rockstar Games"
+        Write-Host "21. Spotify"
+        Write-Host "22. Steam"
+        Write-Host "23. Ubisoft Connect"
+        Write-Host "24. Valorant"
+	                  }
+	    show-menu
+        while ($true) {
         $choice = Read-Host ">"
         if ($choice -match '^\d+$') {
-            switch ([int]$choice) {
-                1 {
-                    Clear-Host
-                    Write-Host "Installing: Battle.net . . ."
-                    # download battle.net
-                    Get-FileFromWeb -URL "https://downloader.battle.net/download/getInstaller?os=win&installer=Battle.net-Setup.exe" -File "$env:TEMP\Battle.net.exe"
-                    # install battle.net
-                    Start-Process "$env:TEMP\Battle.net.exe" -ArgumentList '--lang=enUS --installpath="C:\Program Files (x86)\Battle.net"'
-                    # create battle.net shortcut
-                    $WshShell = New-Object -comObject WScript.Shell
-                    $Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Battle.net.lnk")
-                    $Shortcut.TargetPath = "$env:SystemDrive\Program Files (x86)\Battle.net\Battle.net Launcher.exe"
-                    $Shortcut.Save()
-                    return 
-                }
-                2 {
-                    Clear-Host
-                    Write-Host "Installing: Electronic Arts . . ."
-                    # download electronic arts
-                    Get-FileFromWeb -URL "https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EAappInstaller.exe" -File "$env:TEMP\Electronic Arts.exe"
-                    # install electronic arts
-                    Start-Process "$env:TEMP\Electronic Arts.exe"
-                    Clear-Host
-                    Write-Host "Installing: Punkbuster Service Updater . . . (Add Games to Punkbuster)"
-                    # download punkbuster service updater
-                    Get-FileFromWeb -URL "https://www.evenbalance.com/downloads/W/gui/pbsetup.zip" -File "$env:TEMP\pbsetup.zip"
-                    # extract punkbuster service updater
-                    Expand-Archive "$env:TEMP\pbsetup.zip" -DestinationPath "$env:TEMP\pbsetup" -ErrorAction SilentlyContinue
-                    # install punkbuster service updater
-                    Start-Process -wait "$env:TEMP\pbsetup\pbsetup.exe"
-                    return 
-                }
-                3 {
-                    Clear-Host
-                    Write-Host "Installing: Epic Games . . ."
-                    # download epic games
-                    Get-FileFromWeb -URL "https://epicgames-download1.akamaized.net/Builds/UnrealEngineLauncher/Installers/Win32/EpicInstaller-15.17.1.msi?launcherfilename=EpicInstaller-15.17.1.msi" -File "$env:TEMP\Epic Games.msi"
-                    # install epic games
-                    Start-Process -wait "$env:TEMP\Epic Games.msi" -ArgumentList "/quiet"
-                    Clear-Host
-                    Write-Host "Uninstall: Epic Online Services . . ."
-                    # uninstall epic online services
-                    cmd /c "msiexec.exe /x {57A956AB-4BCC-45C6-9B40-957E4E125568} /qn >nul 2>&1"
-                    return 
-                }
-                4 {
-                    Clear-Host
-                    Write-Host "Installing: GOG launcher . . ."
-                    # download gog launcher
-                    Get-FileFromWeb -URL "https://webinstallers.gog-statics.com/download/GOG_Galaxy_2.0.exe" -File "$env:TEMP\GOG launcher.exe"
-                    # install gog launcher
-                    Start-Process "$env:TEMP\GOG launcher.exe"
-                    return 
-                }
-                5 {
-                    Clear-Host
-                    Write-Host "Installing: Rockstar Games . . ."
-                    # download rockstar games
-                    Get-FileFromWeb -URL "https://gamedownloads.rockstargames.com/public/installer/Rockstar-Games-Launcher.exe" -File "$env:TEMP\Rockstar Games.exe"
-                    # install rockstar games
-                    Start-Process "$env:TEMP\Rockstar Games.exe"
-                    return 
-                }
-                6 {
-                    Clear-Host
-                    Write-Host "Installing: Steam . . ."
-                    # download steam
-                    Get-FileFromWeb -URL "https://cdn.cloudflare.steamstatic.com/client/installer/SteamSetup.exe" -File "$env:TEMP\Steam.exe"
-                    # install steam
-                    Start-Process -wait "$env:TEMP\Steam.exe" -ArgumentList "/S"
-                    return 
-                }
-                7 {
-                    Clear-Host
-                    Write-Host "Installing: Ubisoft Connect . . ."
-                    # download ubisoft connect
-                    Get-FileFromWeb -URL "https://static3.cdn.ubi.com/orbit/launcher_installer/UbisoftConnectInstaller.exe" -File "$env:TEMP\Ubisoft Connect.exe"
-                    # install ubisoft connect
-                    Start-Process -wait "$env:TEMP\Ubisoft Connect.exe" -ArgumentList "/S"
-                    return 
-                }
-                0 {
-                    Clear-Host
-                    return 
-                }
-                default {
-                    Write-Host "Invalid choice." -ForegroundColor Red
-                }
-            }
-        } else {
-            Write-Host "Invalid input. Please select a valid option (1-7)." -ForegroundColor Red
-        }
-    }
-}
-show-menu
-while ($true) {
-    $choice = Read-Host ">"
-    if ($choice -match '^\d+$') {
         switch ([int]$choice) {
-            1 {
+        1 {
 
-                Clear-Host
-                Write-Host "Installing: 7Zip . . ."
-                # download 7zip
-                Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/7 Zip.exe" -File "$env:TEMP\7 Zip.exe"
-                # install 7zip
-                Start-Process -wait "$env:TEMP\7 Zip.exe" -ArgumentList "/S"
-                show-menu
+Clear-Host
 
-            }
-            
-            2 {
+exit
 
-                Clear-Host
-                Write-Host "Installing: Discord . . ."
-                # download discord
-                Get-FileFromWeb -URL "https://stable.dl2.discordapp.net/distro/app/stable/win/x64/1.0.9229/DiscordSetup.exe" -File "$env:TEMP\Discord.exe"
-                # install discord
-                Start-Process -wait "$env:TEMP\Discord.exe" -ArgumentList "/s"
-                show-menu
+          }
+        2 {
 
-            }
-            
-            3 {
+Clear-Host
 
-                Clear-Host
-                Write-Host "Installing: Escape From Tarkov . . ."
-                # download escape from tarkov
-                Get-FileFromWeb -URL "https://prod.escapefromtarkov.com/launcher/download" -File "$env:TEMP\Escape From Tarkov.exe"
-                # install escape from tarkov
-                Start-Process "$env:TEMP\Escape From Tarkov.exe"
-                show-menu
+Write-Host "Installing: Discord..."
 
-            }
-            
-            
-            4 {
+# set config for discord
+New-Item -Path "$env:APPDATA\discord\settings.json" -ItemType File -Force | Out-Null
+$DiscordSettings = @'
+{
+    "SKIP_HOST_UPDATE": true,
+    "DEVELOPER_MODE": true,
+    "enableHardwareAcceleration": false,
+    "MINIMIZE_TO_TRAY": true,
+    "OPEN_ON_STARTUP": false,
+    "START_MINIMIZED": false,
+    "IS_MAXIMIZED": true,
+    "IS_MINIMIZED": false,
+    "debugLogging": false
+}
+'@
+Set-Content -Path "$env:APPDATA\discord\settings.json" -Value $DiscordSettings -Force | Out-Null
 
-                Clear-Host
-                Write-Host "Installing: League Of Legends . . ."
-                # download league of legends
-                Get-FileFromWeb -URL "https://lol.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.na.exe" -File "$env:TEMP\League Of Legends.exe"
-                # install league of legends
-                Start-Process "$env:TEMP\League Of Legends.exe"
-                show-menu
+# download discord				  
+Get-FileFromWeb -URL "https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64" -File "$env:SystemRoot\Temp\Discord.exe"
 
-            }
-            5 {
+# install discord	
+Start-Process "$env:SystemRoot\Temp\Discord.exe"
 
-                Clear-Host
-                Write-Host "Installing: Notepad ++ . . ."
-                # download notepad ++
-                Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/Notepad%20++.exe" -File "$env:TEMP\Notepad ++.exe"
-                # install notepad ++
-                Start-Process -wait "$env:TEMP\Notepad ++.exe" -ArgumentList "/S"
-                # create config for notepad ++
-                $MultilineComment = @"
+show-menu
+
+          }
+        3 {
+
+Clear-Host
+
+Write-Host "Installing: Roblox..."
+
+# download roblox
+Get-FileFromWeb -URL "https://www.roblox.com/download/client?os=win" -File "$env:SystemRoot\Temp\Roblox.exe"
+
+# install roblox
+Start-Process "$env:SystemRoot\Temp\Roblox.exe" -ArgumentList "/S"
+
+show-menu
+
+          }
+        4 {
+
+Clear-Host
+
+Write-Host "Installing: 7Zip..."
+
+# download 7zip
+Get-FileFromWeb -URL "https://www.7-zip.org/a/7z2301-x64.exe" -File "$env:SystemRoot\Temp\7 Zip.exe"
+
+# install 7zip
+Start-Process -Wait "$env:SystemRoot\Temp\7 Zip.exe" -ArgumentList "/S"
+
+# set config for 7zip
+cmd /c "reg add `"HKEY_CURRENT_USER\Software\7-Zip\Options`" /v `"ContextMenu`" /t REG_DWORD /d `"259`" /f >nul 2>&1"
+cmd /c "reg add `"HKEY_CURRENT_USER\Software\7-Zip\Options`" /v `"CascadedMenu`" /t REG_DWORD /d `"0`" /f >nul 2>&1"
+
+# cleaner start menu shortcut path
+Move-Item -Path "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\7-Zip\7-Zip File Manager.lnk" -Destination "$env:ProgramData\Microsoft\Windows\Start Menu\Programs" -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\7-Zip" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+
+# create 7zip shortcut
+$WshShell = New-Object -comObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\7-Zip File Manager.lnk")
+$Shortcut.TargetPath = "$env:SystemDrive\Program Files\7-Zip\7zFM.exe"
+$Shortcut.Save()
+
+show-menu
+
+          }
+        5 {
+
+Clear-Host
+
+Write-Host "Installing: Battle.net..."
+
+# download battle.net
+Get-FileFromWeb -URL "https://downloader.battle.net/download/getInstaller?os=win&installer=Battle.net-Setup.exe" -File "$env:SystemRoot\Temp\Battle.net.exe"
+
+# install battle.net 
+Start-Process "$env:SystemRoot\Temp\Battle.net.exe" -ArgumentList '--lang=enUS --installpath="C:\Program Files (x86)\Battle.net"'
+
+show-menu
+
+          }
+        6 {
+
+Clear-Host
+
+Write-Host "Installing: Brave..."
+
+# download brave
+Get-FileFromWeb -URL "https://brave-browser-downloads.s3.brave.com/latest/brave_installer-x64.exe" -File "$env:SystemRoot\Temp\BraveInstaller.exe"
+
+# install brave
+Start-Process "$env:SystemRoot\Temp\BraveInstaller.exe" -ArgumentList "--system-level" -Wait
+
+# install ublock origin
+cmd /c "reg add `"HKLM\SOFTWARE\Policies\BraveSoftware\Brave\ExtensionInstallForcelist`" /v `"1`" /t REG_SZ /d `"cjpalhdlnbpafiamejdnhcphjbkeiagm;https://clients2.google.com/service/update2/crx`" /f >nul 2>&1"
+
+# add brave policies
+cmd /c "reg add `"HKLM\SOFTWARE\Policies\BraveSoftware\Brave`" /v `"HardwareAccelerationModeEnabled`" /t REG_DWORD /d `"0`" /f >nul 2>&1"
+cmd /c "reg add `"HKLM\SOFTWARE\Policies\BraveSoftware\Brave`" /v `"BackgroundModeEnabled`" /t REG_DWORD /d `"0`" /f >nul 2>&1"
+cmd /c "reg add `"HKLM\SOFTWARE\Policies\BraveSoftware\Brave`" /v `"HighEfficiencyModeEnabled`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
+
+# remove logon brave
+$basePath = "HKLM:\Software\Microsoft\Active Setup\Installed Components"
+Get-ChildItem $basePath | ForEach-Object {
+$val = (Get-ItemProperty $_.PsPath)."(default)"
+if ($val -like "*Brave*") {
+Remove-Item $_.PsPath -Force -ErrorAction SilentlyContinue
+}
+}
+
+# remove brave services
+$services = Get-Service | Where-Object { $_.Name -match 'Brave' }
+foreach ($service in $services) {
+cmd /c "sc stop `"$($service.Name)`" >nul 2>&1"
+cmd /c "sc delete `"$($service.Name)`" >nul 2>&1"
+}
+
+# remove brave scheduled tasks
+Get-ScheduledTask | Where-Object { $_.TaskName -like '*Brave*' } | Unregister-ScheduledTask -Confirm:$false -ErrorAction SilentlyContinue
+
+show-menu
+
+          }
+        7 {
+
+Clear-Host
+
+Write-Host "Installing: Electronic Arts..."
+
+# download electronic arts
+Get-FileFromWeb -URL "https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EAappInstaller.exe" -File "$env:SystemRoot\Temp\Electronic Arts.exe"
+
+# install electronic arts
+Start-Process "$env:SystemRoot\Temp\Electronic Arts.exe"
+
+show-menu
+
+          }
+        8 {
+
+Clear-Host
+
+Write-Host "Installing: Epic Games..."
+
+# download epic games
+Get-FileFromWeb -URL "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi" -File "$env:SystemRoot\Temp\Epic Games.msi"
+
+# install epic games
+Start-Process -Wait "$env:SystemRoot\Temp\Epic Games.msi" -ArgumentList "/quiet"
+
+Clear-Host
+Write-Host "Close: Epic Games After Update" -ForegroundColor Red
+
+# open epic games to update and install epic online services
+Start-Process -Wait "$env:SystemDrive\Program Files\Epic Games\Launcher\Portal\Binaries\Win64\EpicGamesLauncher.exe"
+
+Clear-Host
+Write-Host "Uninstall: Epic Online Services..."
+
+# uninstall epic online services
+$FindEpicOnlineServices = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
+$EpicOnlineServices = Get-ItemProperty $FindEpicOnlineServices -ErrorAction SilentlyContinue |
+Where-Object { $_.DisplayName -like "*Epic Online Services*" }
+if ($EpicOnlineServices) {
+$guid = $EpicOnlineServices.PSChildName
+Start-Process "msiexec.exe" -ArgumentList "/x $guid /qn" -Wait -NoNewWindow
+}
+
+# remove logon epic games
+cmd /c "reg delete `"HKCU\Software\Microsoft\Windows\CurrentVersion\Run`" /v `"EpicGamesLauncher`" /f >nul 2>&1"
+
+show-menu
+
+          }
+        9 {
+
+Clear-Host
+
+Write-Host "Installing: Escape From Tarkov..."
+
+# download escape from tarkov
+Get-FileFromWeb -URL "https://prod.escapefromtarkov.com/launcher/download" -File "$env:SystemRoot\Temp\Escape From Tarkov.exe"
+
+# install escape from tarkov
+Start-Process -Wait "$env:SystemRoot\Temp\Escape From Tarkov.exe" -ArgumentList "/VERYSILENT /NORESTART"
+
+# create escape from tarkov shortcut
+$WshShell = New-Object -comObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Battlestate Games Launcher.lnk")
+$Shortcut.TargetPath = "$env:SystemDrive\Battlestate Games\BsgLauncher\BsgLauncher.exe"
+$Shortcut.Save()
+
+# cleaner start menu shortcut path
+Move-Item -Path "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Battlestate Games\Battlestate Games Launcher.lnk" -Destination "$env:ProgramData\Microsoft\Windows\Start Menu\Programs" -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Battlestate Games" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+
+show-menu
+
+          }
+       10 {
+
+Clear-Host
+
+Write-Host "Installing: Firefox..."
+
+# download firefox
+Get-FileFromWeb -URL "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -File "$env:SystemRoot\Temp\Firefox.exe"
+
+# install firefox
+Start-Process -Wait "$env:SystemRoot\Temp\Firefox.exe" -ArgumentList "/S"
+
+# uninstall mozilla maintenance service
+Start-Process -FilePath "C:\Program Files (x86)\Mozilla Maintenance Service\uninstall.exe" -ArgumentList "/S" -WindowStyle Hidden -Wait
+
+# remove firefox scheduled tasks
+Get-ScheduledTask | Where-Object {$_.Taskname -match 'Firefox'} | Unregister-ScheduledTask -Confirm:$false -ErrorAction SilentlyContinue
+
+# install ublock origin
+$uBlockDir = "C:\Program Files\Mozilla Firefox\distribution\extensions"
+If (!(Test-Path $ublockDir)) { New-Item -ItemType Directory -Path $ublockDir -Force | Out-Null }
+Get-FileFromWeb -URL "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi" -File "$uBlockDir\uBlock0@raymondhill.net.xpi"
+
+# disable firefox updates
+cmd /c "reg add `"HKLM\SOFTWARE\Policies\Mozilla\Firefox`" /v `"AppAutoUpdate`" /t REG_DWORD /d `"0`" /f >nul 2>&1"
+
+# start and close firefox hidden to create profiles folder
+Start-Process -FilePath "$env:SystemDrive\Program Files\Mozilla Firefox\firefox.exe" -ArgumentList "--headless"
+Start-Sleep -Seconds 5
+Stop-Process -Name "firefox" -Force -ErrorAction SilentlyContinue
+
+# disable firefox hardware acceleration
+$JsFile = @'
+user_pref("layers.acceleration.disabled", true);
+user_pref("gfx.direct2d.disabled", true);
+'@
+$FireFoxProfile = Get-ChildItem "$env:APPDATA\Mozilla\Firefox\Profiles" -Directory | Where-Object { $_.Name -match '\.default-release$' } | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+if ($FireFoxProfile) {
+[System.IO.File]::WriteAllText("$($FireFoxProfile.FullName)\user.js", $JsFile, [System.Text.UTF8Encoding]::new($false))
+}
+
+show-menu
+
+          }
+       11 {
+
+Clear-Host
+
+Write-Host "Installing: Frame View..."
+
+# download frame view
+Get-FileFromWeb -URL "https://images.nvidia.com/content/geforce/technologies/frameview/FrameView_1.7/FrameViewSetup.exe" -File "$env:SystemRoot\Temp\FrameView.exe"
+
+# install frame view 
+Start-Process -Wait "$env:SystemRoot\Temp\FrameView.exe" -ArgumentList "/s"
+
+# cleaner start menu shortcut path
+Move-Item -Path "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\NVIDIA FrameView\FrameView.lnk" -Destination "$env:ProgramData\Microsoft\Windows\Start Menu\Programs" -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\NVIDIA FrameView" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+
+show-menu
+
+          }
+       12 {
+
+Clear-Host
+
+Write-Host "Installing: GOG launcher..."
+
+# download gog launcher
+Get-FileFromWeb -URL "https://webinstallers.gog-statics.com/download/GOG_Galaxy_2.0.exe" -File "$env:SystemRoot\Temp\GOG launcher.exe"
+
+# install gog launcher
+Start-Process "$env:SystemRoot\Temp\GOG launcher.exe"
+
+show-menu
+
+          }
+       13 {
+
+Clear-Host
+
+Write-Host "Installing: Google Chrome..."
+
+# download google chrome
+Get-FileFromWeb -URL "https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi" -File "$env:SystemRoot\Temp\Chrome.msi"
+
+# install google chrome
+Start-Process -Wait "$env:SystemRoot\Temp\Chrome.msi" -ArgumentList "/quiet"
+
+# install ublock origin lite
+cmd /c "reg add `"HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist`" /v `"1`" /t REG_SZ /d `"ddkjiahejlhfcafbddmgiahcphecmpfh;https://clients2.google.com/service/update2/crx`" /f >nul 2>&1"
+
+# add chrome policies
+cmd /c "reg add `"HKLM\SOFTWARE\Policies\Google\Chrome`" /v `"HardwareAccelerationModeEnabled`" /t REG_DWORD /d `"0`" /f >nul 2>&1"
+cmd /c "reg add `"HKLM\SOFTWARE\Policies\Google\Chrome`" /v `"BackgroundModeEnabled`" /t REG_DWORD /d `"0`" /f >nul 2>&1"
+cmd /c "reg add `"HKLM\SOFTWARE\Policies\Google\Chrome`" /v `"HighEfficiencyModeEnabled`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
+
+# remove logon chrome
+$basePath = "HKLM:\Software\Microsoft\Active Setup\Installed Components"
+Get-ChildItem $basePath | ForEach-Object {
+$val = (Get-ItemProperty $_.PsPath)."(default)"
+if ($val -like "*Chrome*") {
+Remove-Item $_.PsPath -Force -ErrorAction SilentlyContinue
+}
+}
+
+# remove chrome services
+$services = Get-Service | Where-Object { $_.Name -match 'Google' }
+foreach ($service in $services) {
+cmd /c "sc stop `"$($service.Name)`" >nul 2>&1"
+cmd /c "sc delete `"$($service.Name)`" >nul 2>&1"
+}
+
+# remove chrome scheduled tasks
+Get-ScheduledTask | Where-Object { $_.TaskName -like '*Google*' } | Unregister-ScheduledTask -Confirm:$false -ErrorAction SilentlyContinue
+
+show-menu
+
+          }
+       14 {
+
+Clear-Host
+
+Write-Host "Installing: League Of Legends..."
+
+# download league of legends
+Get-FileFromWeb -URL "https://lol.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.na.exe" -File "$env:SystemRoot\Temp\League Of Legends.exe"
+
+# install league of legends
+Start-Process "$env:SystemRoot\Temp\League Of Legends.exe" -ArgumentList "--skip-to-install"
+
+show-menu
+
+          }
+       15 {
+
+Clear-Host
+
+Write-Host "Installing: Notepad ++..."
+
+# download notepad ++
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/files/raw/main/Notepad%20++.exe" -File "$env:SystemRoot\Temp\Notepad ++.exe"
+
+# install notepad ++
+Start-Process -Wait "$env:SystemRoot\Temp\Notepad ++.exe" -ArgumentList "/S"
+
+# create config for notepad ++
+$NotePadConfig = @'
 <?xml version="1.0" encoding="UTF-8" ?>
 <NotepadPlus>
-    <FindHistory nbMaxFindHistoryPath="10" nbMaxFindHistoryFilter="10" nbMaxFindHistoryFind="10" nbMaxFindHistoryReplace="10" matchWord="no" matchCase="no" wrap="yes" directionDown="yes" fifRecuisive="yes" fifInHiddenFolder="no" fifProjectPanel1="no" fifProjectPanel2="no" fifProjectPanel3="no" fifFilterFollowsDoc="no" fifFolderFollowsDoc="no" searchMode="0" transparencyMode="1" transparency="150" dotMatchesNewline="no" isSearch2ButtonsMode="no" regexBackward4PowerUser="no" bookmarkLine="no" purge="no">
-        <Filter name="" />
-        <Find name="" />
-        <Find name="sharpening" />
-        <Find name="sharpen" />
-        <Find name="sharp" />
-        <Replace name="" />
-    </FindHistory>
-    <History nbMaxFile="0" inSubMenu="no" customLength="-1" />
     <ProjectPanels>
         <ProjectPanel id="0" workSpaceFile="" />
         <ProjectPanel id="1" workSpaceFile="" />
@@ -349,26 +421,26 @@ while ($true) {
         <number initial="-1" increase="-1" repeat="-1" formatChoice="dec" leadingChoice="none" />
     </ColumnEditor>
     <GUIConfigs>
-        <GUIConfig name="ToolBar" visible="yes">small</GUIConfig>
+        <GUIConfig name="ToolBar" visible="yes" fluentColor="0" fluentCustomColor="16229943" fluentMono="no">small</GUIConfig>
         <GUIConfig name="StatusBar">show</GUIConfig>
-        <GUIConfig name="TabBar" dragAndDrop="yes" drawTopBar="yes" drawInactiveTab="yes" reduce="yes" closeButton="yes" doubleClick2Close="no" vertical="no" multiLine="no" hide="no" quitOnEmpty="no" iconSetNumber="0" />
+        <GUIConfig name="TabBar" dragAndDrop="yes" drawTopBar="yes" drawInactiveTab="yes" reduce="yes" closeButton="yes" pinButton="yes" showOnlyPinnedButton="no" buttonsOninactiveTabs="no" doubleClick2Close="no" vertical="no" multiLine="no" hide="no" quitOnEmpty="no" iconSetNumber="0" tabCompactLabelLen="0" />
         <GUIConfig name="ScintillaViewsSplitter">vertical</GUIConfig>
         <GUIConfig name="UserDefineDlg" position="undocked">hide</GUIConfig>
-        <GUIConfig name="TabSetting" replaceBySpace="no" size="4" />
-        <GUIConfig name="AppPosition" x="148" y="77" width="1234" height="773" isMaximized="no" />
-        <GUIConfig name="FindWindowPosition" left="460" top="338" right="1074" bottom="702" isLessModeOn="no" />
+        <GUIConfig name="TabSetting" replaceBySpace="no" size="4" backspaceUnindent="no" />
+        <GUIConfig name="AppPosition" x="0" y="0" width="1024" height="700" isMaximized="no" />
+        <GUIConfig name="FindWindowPosition" left="0" top="0" right="0" bottom="0" isLessModeOn="no" />
         <GUIConfig name="FinderConfig" wrappedLines="no" purgeBeforeEverySearch="no" showOnlyOneEntryPerFoundLine="yes" />
-        <GUIConfig name="noUpdate" intervalDays="15" nextUpdateDate="20250326">yes</GUIConfig>
+        <GUIConfig name="noUpdate" intervalDays="15" nextUpdateDate="20260401" autoUpdateMode="0">yes</GUIConfig>
         <GUIConfig name="Auto-detection">yes</GUIConfig>
         <GUIConfig name="CheckHistoryFiles">no</GUIConfig>
-        <GUIConfig name="TrayIcon">no</GUIConfig>
-        <GUIConfig name="MaintainIndent">yes</GUIConfig>
+        <GUIConfig name="TrayIcon">0</GUIConfig>
+        <GUIConfig name="MaintainIndent">1</GUIConfig>
         <GUIConfig name="TagsMatchHighLight" TagAttrHighLight="yes" HighLightNonHtmlZone="no">yes</GUIConfig>
         <GUIConfig name="RememberLastSession">no</GUIConfig>
         <GUIConfig name="KeepSessionAbsentFileEntries">no</GUIConfig>
         <GUIConfig name="DetectEncoding">yes</GUIConfig>
         <GUIConfig name="SaveAllConfirm">yes</GUIConfig>
-        <GUIConfig name="NewDocDefaultSettings" format="0" encoding="4" lang="0" codepage="-1" openAnsiAsUTF8="yes" addNewDocumentOnStartup="no" />
+        <GUIConfig name="NewDocDefaultSettings" format="0" encoding="4" lang="0" codepage="-1" openAnsiAsUTF8="yes" addNewDocumentOnStartup="no" useContentAsTabName="no" />
         <GUIConfig name="langsExcluded" gr0="0" gr1="0" gr2="0" gr3="0" gr4="0" gr5="0" gr6="0" gr7="0" gr8="0" gr9="0" gr10="0" gr11="0" gr12="0" langMenuCompact="yes" />
         <GUIConfig name="Print" lineNumber="yes" printOption="3" headerLeft="" headerMiddle="" headerRight="" footerLeft="" footerMiddle="" footerRight="" headerFontName="" headerFontStyle="0" headerFontSize="0" footerFontName="" footerFontStyle="0" footerFontSize="0" margeLeft="0" margeRight="0" margeTop="0" margeBottom="0" />
         <GUIConfig name="Backup" action="0" useCustumDir="no" dir="" isSnapshotMode="no" snapshotBackupTiming="7000" />
@@ -390,13 +462,13 @@ while ($true) {
         <GUIConfig name="delimiterSelection" leftmostDelimiter="40" rightmostDelimiter="41" delimiterSelectionOnEntireDocument="no" />
         <GUIConfig name="largeFileRestriction" fileSizeMB="200" isEnabled="yes" allowAutoCompletion="no" allowBraceMatch="no" allowSmartHilite="no" allowClickableLink="no" deactivateWordWrap="yes" suppress2GBWarning="no" />
         <GUIConfig name="multiInst" setting="0" clipboardHistory="no" documentList="no" characterPanel="no" folderAsWorkspace="no" projectPanels="no" documentMap="no" fuctionList="no" pluginPanels="no" />
-        <GUIConfig name="MISC" fileSwitcherWithoutExtColumn="no" fileSwitcherExtWidth="50" fileSwitcherWithoutPathColumn="yes" fileSwitcherPathWidth="50" fileSwitcherNoGroups="no" backSlashIsEscapeCharacterForSql="yes" writeTechnologyEngine="1" isFolderDroppedOpenFiles="no" docPeekOnTab="no" docPeekOnMap="no" sortFunctionList="no" saveDlgExtFilterToAllTypes="no" muteSounds="no" enableFoldCmdToggable="no" hideMenuRightShortcuts="no" />
-        <GUIConfig name="Searching" monospacedFontFindDlg="no" fillFindFieldWithSelected="yes" fillFindFieldSelectCaret="yes" findDlgAlwaysVisible="no" confirmReplaceInAllOpenDocs="yes" replaceStopsWithoutFindingNext="no" inSelectionAutocheckThreshold="1024" />
+        <GUIConfig name="MISC" fileSwitcherWithoutExtColumn="no" fileSwitcherExtWidth="50" fileSwitcherWithoutPathColumn="yes" fileSwitcherPathWidth="50" fileSwitcherNoGroups="no" backSlashIsEscapeCharacterForSql="yes" writeTechnologyEngine="1" isFolderDroppedOpenFiles="no" docPeekOnTab="no" docPeekOnMap="no" sortFunctionList="no" saveDlgExtFilterToAllTypes="no" muteSounds="yes" enableFoldCmdToggable="no" hideMenuRightShortcuts="no" />
+        <GUIConfig name="Searching" monospacedFontFindDlg="no" fillFindFieldWithSelected="yes" fillFindFieldSelectCaret="yes" findDlgAlwaysVisible="no" confirmReplaceInAllOpenDocs="yes" replaceStopsWithoutFindingNext="no" inSelectionAutocheckThreshold="1024" fillFindWhatThreshold="1024" fillDirFieldFromActiveDoc="no" />
         <GUIConfig name="searchEngine" searchEngineChoice="2" searchEngineCustom="" />
         <GUIConfig name="MarkAll" matchCase="no" wholeWordOnly="yes" />
         <GUIConfig name="SmartHighLight" matchCase="no" wholeWordOnly="yes" useFindSettings="no" onAnotherView="no">yes</GUIConfig>
-        <GUIConfig name="DarkMode" enable="yes" colorTone="0" customColorTop="2105376" customColorMenuHotTrack="4210752" customColorActive="4210752" customColorMain="2105376" customColorError="176" customColorText="14737632" customColorDarkText="12632256" customColorDisabledText="8421504" customColorLinkText="65535" customColorEdge="6579300" customColorHotEdge="10197915" customColorDisabledEdge="4737096" enableWindowsMode="no" darkThemeName="DarkModeDefault.xml" darkToolBarIconSet="0" darkTabIconSet="2" darkTabUseTheme="no" lightThemeName="" lightToolBarIconSet="4" lightTabIconSet="0" lightTabUseTheme="yes" />
-        <GUIConfig name="ScintillaPrimaryView" lineNumberMargin="show" lineNumberDynamicWidth="yes" bookMarkMargin="show" indentGuideLine="show" folderMarkStyle="box" isChangeHistoryEnabled="1" lineWrapMethod="aligned" currentLineIndicator="1" currentLineFrameWidth="1" virtualSpace="no" scrollBeyondLastLine="yes" rightClickKeepsSelection="no" disableAdvancedScrolling="no" wrapSymbolShow="hide" Wrap="no" borderEdge="yes" isEdgeBgMode="no" edgeMultiColumnPos="" zoom="4" zoom2="0" whiteSpaceShow="hide" eolShow="hide" eolMode="1" npcShow="hide" npcMode="1" npcCustomColor="no" npcIncludeCcUniEOL="no" npcNoInputC0="yes" ccShow="yes" borderWidth="2" smoothFont="no" paddingLeft="0" paddingRight="0" distractionFreeDivPart="4" lineCopyCutWithoutSelection="yes" multiSelection="yes" columnSel2MultiEdit="yes" />
+        <GUIConfig name="DarkMode" enable="yes" colorTone="0" customColorTop="2105376" customColorMenuHotTrack="4539717" customColorActive="3684408" customColorMain="2105376" customColorError="176" customColorText="14737632" customColorDarkText="12632256" customColorDisabledText="8421504" customColorLinkText="65535" customColorEdge="6579300" customColorHotEdge="10197915" customColorDisabledEdge="4737096" enableWindowsMode="no" darkThemeName="DarkModeDefault.xml" darkToolBarIconSet="0" darkTbFluentColor="0" darkTbFluentCustomColor="16229943" darkTbFluentMono="no" darkTabIconSet="2" darkTabUseTheme="no" lightThemeName="" lightToolBarIconSet="4" lightTbFluentColor="0" lightTbFluentCustomColor="12873472" lightTbFluentMono="no" lightTabIconSet="0" lightTabUseTheme="yes" />
+        <GUIConfig name="ScintillaPrimaryView" lineNumberMargin="show" lineNumberDynamicWidth="yes" bookMarkMargin="show" indentGuideLine="show" folderMarkStyle="box" isChangeHistoryEnabled="1" lineWrapMethod="aligned" currentLineIndicator="1" currentLineFrameWidth="1" virtualSpace="no" scrollBeyondLastLine="yes" rightClickKeepsSelection="no" selectedTextForegroundSingleColor="no" disableAdvancedScrolling="no" wrapSymbolShow="hide" Wrap="no" borderEdge="yes" isEdgeBgMode="no" edgeMultiColumnPos="" zoom="0" zoom2="0" whiteSpaceShow="hide" eolShow="hide" eolMode="1" npcShow="hide" npcMode="1" npcCustomColor="no" npcIncludeCcUniEOL="no" npcNoInputC0="yes" ccShow="yes" borderWidth="2" smoothFont="no" paddingLeft="0" paddingRight="0" distractionFreeDivPart="4" lineCopyCutWithoutSelection="yes" multiSelection="yes" columnSel2MultiEdit="yes" />
         <GUIConfig name="DockingManager" leftWidth="200" rightWidth="200" topHeight="200" bottomHeight="200">
             <ActiveTabs cont="0" activeTab="-1" />
             <ActiveTabs cont="1" activeTab="-1" />
@@ -404,144 +476,196 @@ while ($true) {
             <ActiveTabs cont="3" activeTab="-1" />
         </GUIConfig>
     </GUIConfigs>
+    <FindHistory nbMaxFindHistoryPath="10" nbMaxFindHistoryFilter="10" nbMaxFindHistoryFind="10" nbMaxFindHistoryReplace="10" matchWord="no" matchCase="no" wrap="yes" directionDown="yes" fifRecuisive="yes" fifInHiddenFolder="no" fifProjectPanel1="no" fifProjectPanel2="no" fifProjectPanel3="no" fifFilterFollowsDoc="no" searchMode="0" transparencyMode="1" transparency="150" dotMatchesNewline="no" isSearch2ButtonsMode="no" regexBackward4PowerUser="no" bookmarkLine="no" purge="no" />
+    <History nbMaxFile="0" inSubMenu="no" customLength="-1" />
 </NotepadPlus>
 
-"@
-                Set-Content -Path "$env:AppData\Notepad++\config.xml" -Value $MultilineComment -Force
-                show-menu
+'@
+Set-Content -Path "$env:AppData\Notepad++\config.xml" -Value $NotePadConfig -Force
 
-            }
-            6 {
+# create notepad ++ shortcut
+$WshShell = New-Object -comObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Notepad++.lnk")
+$Shortcut.TargetPath = "$env:SystemDrive\Program Files\Notepad++\notepad++.exe"
+$Shortcut.Save()
 
-                Clear-Host
-                Write-Host "Installing: OBS Studio . . ."
-                # download obs studio
-                Get-FileFromWeb -URL "https://github.com/obsproject/obs-studio/releases/download/31.0.2/OBS-Studio-31.0.2-Windows-Installer.exe" -File "$env:TEMP\OBS Studio.exe"
-                # install obs studio
-                Start-Process -wait "$env:TEMP\OBS Studio.exe" -ArgumentList "/S"
-                show-menu
+show-menu
 
-            }
-            7 {
+          }
+       16 {
 
-                Clear-Host
-                Write-Host "Installing: Roblox . . ."
-                # download roblox
-                Get-FileFromWeb -URL "https://www.roblox.com/download/client?os=win" -File "$env:TEMP\Roblox.exe"
-                # install roblox
-                Start-Process "$env:TEMP\Roblox.exe"
-                show-menu
+Clear-Host
 
-            }
-            
-            8 {
+Write-Host "Installing: Nvidia App..."
 
-                Clear-Host
-                Write-Host "Installing: Valorant . . ."
-                # download valorant
-                Get-FileFromWeb -URL "https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.ap.exe" -File "$env:TEMP\Valorant.exe"
-                # install valorant
-                Start-Process "$env:TEMP\Valorant.exe"
-                show-menu
+# download nvidia app
+Get-FileFromWeb -URL "https://us.download.nvidia.com/nvapp/client/11.0.6.383/NVIDIA_app_v11.0.6.383.exe" -File "$env:SystemRoot\Temp\NvidiaApp.exe"
 
-            }
-            9 {
-                Clear-Host
-                Write-Host "Installing: Plutonium . . ."
-                # download plutonium
-                Get-FileFromWeb -URL "https://cdn.plutonium.pw/updater/plutonium.exe" -File "$env:TEMP\Plutonium.exe"
-                # create Plutonium folder in Program Files
-                $plutoniumFolderPath = "$env:SystemDrive\Program Files (x86)\Plutonium"
-                if (-Not (Test-Path -Path $plutoniumFolderPath)) {
-                    New-Item -ItemType Directory -Path $plutoniumFolderPath
-                }
-                # move plutonium.exe to the Plutonium folder
-                Move-Item -Path "$env:TEMP\Plutonium.exe" -Destination "$plutoniumFolderPath\Plutonium.exe"
-                # create plutonium shortcut
-                $WshShell = New-Object -comObject WScript.Shell
-                $Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Plutonium.lnk")
-                $Shortcut.TargetPath = "$plutoniumFolderPath\Plutonium.exe"
-                $Shortcut.Save()
-                Start-Process "$plutoniumFolderPath\Plutonium.exe"
-                show-menu
-            }
-            10 {
-                Clear-Host
-                Write-Host "Installing FaceIt Launcher . . ."
-                #download faceit launcher
-                Get-FileFromWeb -URL "https://faceit-client.faceit-cdn.net/release/FACEIT-setup-latest.exe" -File "$env:TEMP\FACEIT-setup-latest.exe"
-                #install faceit launcher
-                Start-Process -wait "$env:TEMP\FACEIT-setup-latest.exe" -ArgumentList "/S"
-                Clear-Host
+# install nvidia app
+Start-Process -Wait "$env:SystemRoot\Temp\NvidiaApp.exe" -ArgumentList "/s"
 
-                Write-Host "Installing FaceIt Anti-Cheat . . ."
-                #download face it AC
-                Get-FileFromWeb -URL "https://anticheat-client.faceit-cdn.net/FACEITInstaller_64.exe" -File "$env:TEMP\FACEITInstaller_64.exe"
-                #install face it AC
-                Start-Process -wait "$env:TEMP\FACEITInstaller_64.exe" -ArgumentList "/S"
-                show-menu
-            }
-            
-            11 {
-                Clear-Host
-                Write-Host "Installing: Microsoft Office 2024 LSTC Edition . . ."
-                $toolPath = "$env:TEMP\officedeploymenttool_19029-20136.exe"
-                $configurationPath = "$env:TEMP\OfficeDeployment\configuration-Office365-x64.xml"
-                # download microsoft office
-                Get-FileFromWeb -URL "https://download.microsoft.com/download/6c1eeb25-cf8b-41d9-8d0d-cc1dbc032140/officedeploymenttool_19029-20136.exe" -File $toolPath
+# cleaner start menu shortcut path
+Move-Item -Path "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\NVIDIA Corporation\NVIDIA App.lnk" -Destination "$env:ProgramData\Microsoft\Windows\Start Menu\Programs" -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\NVIDIA Corporation" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
 
-                # extract office deployment tool
-                Start-Process -FilePath $toolPath -ArgumentList "/quiet /extract:$env:TEMP\OfficeDeployment" -Wait
+show-menu
 
-                # create configuration file
-                $configureOffice = @"
-<Configuration ID="7ccad42d-bf21-44c0-8399-a0d9fba9ba0c">
-  <Add OfficeClientEdition="64" Channel="PerpetualVL2024">
-    <Product ID="ProPlus2024Volume" PIDKEY="XJ2XN-FW8RK-P4HMP-DKDBV-GCVGB">
-      <Language ID="en-gb" />
-      <ExcludeApp ID="Lync" />
-      <ExcludeApp ID="OneDrive" />
-      <ExcludeApp ID="Outlook" />
-    </Product>
-  </Add>
-  <Property Name="SharedComputerLicensing" Value="0" />
-  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
-  <Property Name="DeviceBasedLicensing" Value="0" />
-  <Property Name="SCLCacheOverride" Value="0" />
-  <Property Name="AUTOACTIVATE" Value="1" />
-  <Updates Enabled="TRUE" />
-  <AppSettings>
-    <User Key="software\microsoft\office\16.0\excel\options" Name="defaultformat" Value="51" Type="REG_DWORD" App="excel16" Id="L_SaveExcelfilesas" />
-    <User Key="software\microsoft\office\16.0\powerpoint\options" Name="defaultformat" Value="27" Type="REG_DWORD" App="ppt16" Id="L_SavePowerPointfilesas" />
-    <User Key="software\microsoft\office\16.0\word\options" Name="defaultformat" Value="" Type="REG_SZ" App="word16" Id="L_SaveWordfilesas" />
-  </AppSettings>
-</Configuration>
-"@
-                $configureOffice | Set-Content -Path $configurationPath -Force
-                # install microsoft office
-                Start-Process -FilePath "$env:TEMP\OfficeDeployment\setup.exe" -ArgumentList "/configure $configurationPath" -Wait
-                show-menu
-            }
-            12 {
-                show-browser-menu
-                show-menu
-            }
-            13 {
-                show-game-platforms-menu
-                show-menu
-            }
-            14 {
-                Invoke-RestMethod https://get.activated.win | Invoke-Expression
-                show-menu
-            }
-            0 {
-                Clear-Host
-                exit
-            }
-            default {
-                Write-Host "Invalid choice." -ForegroundColor Red
-            }
-        }
-    }
-    else { Write-Host "Invalid input. Please select a valid option (1-14)." }
-}
+          }
+       17 {
+
+Clear-Host
+
+Write-Host "Installing: OBS Studio..."
+
+# download obs studio                      
+Get-FileFromWeb -URL "https://cdn-fastly.obsproject.com/downloads/OBS-Studio-32.1.0-Windows-x64-Installer.exe" -File "$env:SystemRoot\Temp\OBS Studio.exe"
+
+# install obs studio
+Start-Process -Wait "$env:SystemRoot\Temp\OBS Studio.exe" -ArgumentList "/S"
+
+show-menu
+
+          }
+       18 {
+
+Clear-Host
+
+Write-Host "Installing: Onboard Memory Manager..."
+
+# download onboard memory manager
+Get-FileFromWeb -URL "https://download01.logi.com/web/ftp/pub/techsupport/gaming/OnboardMemoryManager_2.6.1749.exe" -File "$env:SystemDrive\Program Files (x86)\Onboard Memory Manager\Onboard Memory Manager.exe"
+
+# create desktop shortcut
+$WshShell = New-Object -comObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\Onboard Memory Manager.lnk")
+$Shortcut.TargetPath = "$env:SystemDrive\Program Files (x86)\Onboard Memory Manager\Onboard Memory Manager.exe"
+$Shortcut.Save()
+
+# create start menu shortcut
+$WshShell = New-Object -comObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Onboard Memory Manager.lnk")
+$Shortcut.TargetPath = "$env:SystemDrive\Program Files (x86)\Onboard Memory Manager\Onboard Memory Manager.exe"
+$Shortcut.Save()
+
+show-menu
+
+          }
+       19 {
+
+Clear-Host
+
+Write-Host "Installing: Pot Player..."
+
+# download pot player         
+Get-FileFromWeb -URL "https://t1.daumcdn.net/potplayer/PotPlayer/Version/Latest/PotPlayerSetup64.exe" -File "$env:SystemRoot\Temp\Pot Player.exe"
+
+# install pot player 
+Start-Process -Wait "$env:SystemRoot\Temp\Pot Player.exe" -ArgumentList "/S /allusers"
+
+# cleaner start menu shortcut path
+Move-Item -Path "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\PotPlayer\PotPlayer 64 bit.lnk" -Destination "$env:ProgramData\Microsoft\Windows\Start Menu\Programs" -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\PotPlayer" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+
+show-menu
+
+          }
+       20 {
+
+Clear-Host
+
+Write-Host "Installing: Rockstar Games..."
+
+# download rockstar games
+Get-FileFromWeb -URL "https://gamedownloads.rockstargames.com/public/installer/Rockstar-Games-Launcher.exe" -File "$env:SystemRoot\Temp\Rockstar Games.exe"
+
+# install rockstar games
+Start-Process -Wait "$env:SystemRoot\Temp\Rockstar Games.exe" -ArgumentList "/s /f"
+
+# cleaner start menu shortcut path
+Move-Item -Path "$env:AppData\Microsoft\Windows\Start Menu\Programs\Rockstar Games\Rockstar Games Launcher.lnk" -Destination "$env:ProgramData\Microsoft\Windows\Start Menu\Programs" -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item "$env:AppData\Microsoft\Windows\Start Menu\Programs\Rockstar Games" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+
+show-menu
+
+          }
+       21 {
+
+Clear-Host
+
+Write-Host "Installing: Spotify..."
+
+# set config for spotify
+New-Item -Path "$env:APPDATA\Spotify\prefs" -ItemType File -Force | Out-Null
+$SpotifySettingsPrefs = @'
+app.autostart-configured=true
+app.autostart-mode="off"
+ui.hardware_acceleration=false
+'@
+Set-Content -Path "$env:APPDATA\Spotify\prefs" -Value $SpotifySettingsPrefs -Force | Out-Null
+
+# download spotify
+Get-FileFromWeb -URL "https://download.scdn.co/SpotifySetup.exe" -File "$env:TEMP\Spotify.exe"
+
+# install spotify
+Start-Process "explorer.exe" -ArgumentList "$env:TEMP\Spotify.exe"
+
+show-menu
+
+          }
+       22 {
+
+Clear-Host
+
+Write-Host "Installing: Steam..."
+
+# download steam
+Get-FileFromWeb -URL "https://cdn.cloudflare.steamstatic.com/client/installer/SteamSetup.exe" -File "$env:SystemRoot\Temp\Steam.exe"
+
+# install steam
+Start-Process -Wait "$env:SystemRoot\Temp\Steam.exe" -ArgumentList "/S"
+
+# cleaner start menu shortcut path
+Move-Item -Path "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Steam\Steam.lnk" -Destination "$env:ProgramData\Microsoft\Windows\Start Menu\Programs" -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Steam" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+
+# remove logon steam
+cmd /c "reg delete `"HKCU\Software\Microsoft\Windows\CurrentVersion\Run`" /v `"Steam`" /f >nul 2>&1"
+
+show-menu
+
+          }
+       23 {
+
+Clear-Host
+
+Write-Host "Installing: Ubisoft Connect..."
+
+# download ubisoft connect
+Get-FileFromWeb -URL "https://static3.cdn.ubi.com/orbit/launcher_installer/UbisoftConnectInstaller.exe" -File "$env:SystemRoot\Temp\Ubisoft Connect.exe"
+
+# install ubisoft connect
+Start-Process -Wait "$env:SystemRoot\Temp\Ubisoft Connect.exe" -ArgumentList "/S"
+
+# cleaner start menu shortcut path
+Move-Item -Path "$env:AppData\Microsoft\Windows\Start Menu\Programs\Ubisoft\Ubisoft Connect\Ubisoft Connect.lnk" -Destination "$env:ProgramData\Microsoft\Windows\Start Menu\Programs" -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item "$env:AppData\Microsoft\Windows\Start Menu\Programs\Ubisoft" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+
+show-menu
+
+          }
+       24 {
+
+Clear-Host
+
+Write-Host "Installing: Valorant..."
+
+# download valorant
+Get-FileFromWeb -URL "https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.ap.exe" -File "$env:SystemRoot\Temp\Valorant.exe"
+
+# install valorant 
+Start-Process "$env:SystemRoot\Temp\Valorant.exe" -ArgumentList "--skip-to-install"
+
+show-menu
+
+          }
+        } } else { Write-Host "Invalid input. Please select a valid option (1-24)." } }

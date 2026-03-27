@@ -3,7 +3,7 @@
 Ensure-Admin
 Test-Connection
 
-Write-Host "1. Reinstall: W10"
+        Write-Host "1. Reinstall: W10"
         Write-Host "2. Reinstall: W11`n"
         while ($true) {
         $choice = Read-Host " "

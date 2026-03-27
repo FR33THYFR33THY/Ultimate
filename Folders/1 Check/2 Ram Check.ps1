@@ -2,7 +2,7 @@
 
 Ensure-Admin
 Test-Connection
-   
+
 Write-Host "Downloading: Cpu Z..."
 
 # download cpuz

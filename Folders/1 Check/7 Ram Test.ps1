@@ -6,7 +6,6 @@ Testing-Connection
 # SCRIPT SILENT
 $progresspreference = 'silentlycontinue'
 
-
 Write-Host "Downloading: TM5..."
 
 # download tm5

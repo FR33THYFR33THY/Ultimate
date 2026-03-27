@@ -1,10 +1,6 @@
-# ================================
-# Gameshler Ultimate Windows Optimizer
-# ================================
-
 # ---------- CONFIG ----------
-$Repo        = "gameshler/Ultimate-Windows-Optimization-Guide"
-$Branch      = "dev"
+$Repo        = "FR33THYFR33THY/Ultimate"
+$Branch      = "main"
 $InstallDir  = Join-Path $env:USERPROFILE "Downloads\UWOG"
 $TempDir     = Join-Path $env:TEMP ("uwog-" + [guid]::NewGuid())
 $ZipPath     = "$TempDir.zip"
@@ -45,7 +41,7 @@ function Invoke-Bootstrap {
 
     Expand-Archive -Path $ZipPath -DestinationPath $TempDir -Force
 
-    $ExtractedDir = Join-Path $TempDir "Ultimate-Windows-Optimization-Guide-$Branch"
+    $ExtractedDir = Join-Path $TempDir "Ultimate-$Branch"
 
     if (-not (Test-Path $ExtractedDir)) {
       throw "Extraction failed."
@@ -81,7 +77,7 @@ function Invoke-Bootstrap {
 
 function Initialize-Environment {
 
-  $Host.UI.RawUI.WindowTitle = "Gameshler Ultimate-Windows-Optimization-Guide"
+  $Host.UI.RawUI.WindowTitle = "FR33THYFR33THY Ultimate"
   $Host.UI.RawUI.BackgroundColor = "Black"
   $Host.PrivateData.ProgressBackgroundColor = "Black"
   $Host.PrivateData.ProgressForegroundColor = "White"
@@ -109,18 +105,9 @@ function Get-Directories {
 
 function Show-Menu {
 
-  $asciiArt = @"
-______                          __    __             ____             __
-/ ____/___ _____ ___  ___  _____/ /_  / /__  _____   / __ \____ ______/ /__
-/ / __/ __ `/ __ `__ \/ _ \/ ___/ __ \/ / _ \/ ___/  / /_/ / __ `/ ___/ //_/
-/ /_/ / /_/ / / / / / /  __(__  ) / / / /  __/ /     / ____/ /_/ / /__/ ,<
-\____/\__,_/_/ /_/ /_/\___/____/_/ /_/_/\___/_/     /_/    \__,_/\___/_/|_|
-"@
-
   while ($true) {
 
     Clear-Host
-    Write-Host $asciiArt -ForegroundColor Magenta
     Write-Host "-----------------------------------------------" -ForegroundColor Green
     Write-Host "Select an option:`n" -ForegroundColor Green
 

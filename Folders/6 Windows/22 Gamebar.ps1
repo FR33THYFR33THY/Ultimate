@@ -6,7 +6,6 @@ Testing-Connection
         # SCRIPT SILENT
         $progresspreference = 'silentlycontinue'
 
-
         Write-Host "1. Gamebar Xbox: Off (Recommended)"
         Write-Host "2. Gamebar Xbox: Default`n"
         while ($true) {

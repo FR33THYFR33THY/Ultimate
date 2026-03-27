@@ -3,9 +3,8 @@
 Ensure-Admin
 Testing-Connection
 
-        # SCRIPT SILENT
-        $progresspreference = 'silentlycontinue'
-
+# SCRIPT SILENT
+$progresspreference = 'silentlycontinue'
 
 # download 7zip
 Get-FileFromWeb -URL "https://www.7-zip.org/a/7z2301-x64.exe" -File "$env:SystemRoot\Temp\7 Zip.exe"

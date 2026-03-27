@@ -1,0 +1,1 @@
+Start-Process "https://github.com/massgravel/Microsoft-Activation-Scripts"

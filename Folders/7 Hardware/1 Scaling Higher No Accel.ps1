@@ -1,7 +1,6 @@
 . $CommonScript
 
 Ensure-Admin
-Testing-Connection
 
         Write-Host "Higher Scaling With No Acceleration`n"
         Write-Host "1. 100%"
@@ -12,7 +11,7 @@ Testing-Connection
         Write-Host "6. 225%"
         Write-Host "7. 250%"
         Write-Host "8. 300%"
-        Write-Host "9. 350%"
+        Write-Host "9. 350%`n"
 	    while ($true) {
         $choice = Read-Host " "
         if ($choice -match '^[1-9]$') {
@@ -21,48 +20,28 @@ Testing-Connection
 
 Clear-Host
 
-# create reg file
-$100 = @"
-Windows Registry Editor Version 5.00
+# 100
 
-; 6-11 pointer speed
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSensitivity"="10"
+# 6-11 pointer speed
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSensitivity`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; disable enhance pointer precision
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSpeed"="0"
-"MouseThreshold1"="0"
-"MouseThreshold2"="0"
+# disable enhance pointer precision
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSpeed`" /t REG_SZ /d `"0`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold1`" /t REG_SZ /d `"0`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold2`" /t REG_SZ /d `"0`" /f >nul 2>&1"
 
-; mouse curve default
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"SmoothMouseXCurve"=hex:\
-    00,00,00,00,00,00,00,00,\
-	c0,cc,0c,00,00,00,00,00,\
-	80,99,19,00,00,00,00,00,\
-	40,66,26,00,00,00,00,00,\
-	00,33,33,00,00,00,00,00
-"SmoothMouseYCurve"=hex:\
-    00,00,00,00,00,00,00,00,\
-	00,00,38,00,00,00,00,00,\
-	00,00,70,00,00,00,00,00,\
-	00,00,a8,00,00,00,00,00,\
-	00,00,e0,00,00,00,00,00
+# mouse curve default
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseXCurve`" /t REG_BINARY /d `"0000000000000000c0cc0c00000000008099190000000000406626000000000000333300000000000`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseYCurve`" /t REG_BINARY /d `"000000000000000000003800000000000000700000000000000a800000000000000e000000000000`" /f >nul 2>&1"
 
-; dpi scaling 100%
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"Win8DpiScaling"=dword:00000001
-"LogPixels"=dword:00000060
+# use custom scaling
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"Win8DpiScaling`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
-; disable fix scaling for apps
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"EnablePerProcessSystemDPI"=dword:00000000
-"@
-Set-Content -Path "$env:SystemRoot\Temp\100%.reg" -Value $100 -Force
+# dpi scaling 100%
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"LogPixels`" /t REG_DWORD /d `"96`" /f >nul 2>&1"
 
-# import reg file
-Regedit.exe /S "$env:SystemRoot\Temp\100%.reg"
+# disable fix scaling for apps
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"EnablePerProcessSystemDPI`" /t REG_DWORD /d `"0`" /f >nul 2>&1"
 
 exit
 
@@ -71,48 +50,28 @@ exit
 
 Clear-Host
 
-# create reg file
-$125 = @"
-Windows Registry Editor Version 5.00
+# 125
 
-; 6-11 pointer speed
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSensitivity"="10"
+# 6-11 pointer speed
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSensitivity`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; enable enhance pointer precision
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSpeed"="1"
-"MouseThreshold1"="6"
-"MouseThreshold2"="10"
+# enable enhance pointer precision
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSpeed`" /t REG_SZ /d `"1`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold1`" /t REG_SZ /d `"6`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold2`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; mouse curve 125% scaling
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"SmoothMouseXCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	00,00,10,00,00,00,00,00,\
-	00,00,20,00,00,00,00,00,\
-	00,00,30,00,00,00,00,00,\
-	00,00,40,00,00,00,00,00
-"SmoothMouseYCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	00,00,38,00,00,00,00,00,\
-	00,00,70,00,00,00,00,00,\
-	00,00,A8,00,00,00,00,00,\
-	00,00,E0,00,00,00,00,00
+# mouse curve 125% scaling
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseXCurve`" /t REG_BINARY /d `"00000000000000000000100000000000000020000000000000003000000000000000400000000000`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseYCurve`" /t REG_BINARY /d `"00000000000000000000380000000000000070000000000000A800000000000000E0000000000000`" /f >nul 2>&1"
 
-; dpi scaling 125%
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"Win8DpiScaling"=dword:00000001
-"LogPixels"=dword:00000078
+# use custom scaling
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"Win8DpiScaling`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
-; enable fix scaling for apps
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"EnablePerProcessSystemDPI"=dword:00000001
-"@
-Set-Content -Path "$env:SystemRoot\Temp\125%.reg" -Value $125 -Force
+# dpi scaling 125%
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"LogPixels`" /t REG_DWORD /d `"120`" /f >nul 2>&1"
 
-# import reg file
-Regedit.exe /S "$env:SystemRoot\Temp\125%.reg"
+# enable fix scaling for apps
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"EnablePerProcessSystemDPI`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
 exit
 
@@ -121,48 +80,28 @@ exit
 
 Clear-Host
 
-# create reg file
-$150 = @"
-Windows Registry Editor Version 5.00
+# 150
 
-; 6-11 pointer speed
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSensitivity"="10"
+# 6-11 pointer speed
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSensitivity`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; enable enhance pointer precision
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSpeed"="1"
-"MouseThreshold1"="6"
-"MouseThreshold2"="10"
+# enable enhance pointer precision
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSpeed`" /t REG_SZ /d `"1`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold1`" /t REG_SZ /d `"6`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold2`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; mouse curve 150% scaling
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"SmoothMouseXCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	30,33,13,00,00,00,00,00,\
-	60,66,26,00,00,00,00,00,\
-	90,99,39,00,00,00,00,00,\
-	C0,CC,4C,00,00,00,00,00
-"SmoothMouseYCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	00,00,38,00,00,00,00,00,\
-	00,00,70,00,00,00,00,00,\
-	00,00,A8,00,00,00,00,00,\
-	00,00,E0,00,00,00,00,00
+# mouse curve 150% scaling
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseXCurve`" /t REG_BINARY /d `"0000000000000000303313000000000060662600000000009099390000000000C0CC4C0000000000`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseYCurve`" /t REG_BINARY /d `"0000000000000000000038000000000000007000000000000000A800000000000000E00000000000`" /f >nul 2>&1"
 
-; dpi scaling 150%
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"Win8DpiScaling"=dword:00000001
-"LogPixels"=dword:00000090
+# use custom scaling
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"Win8DpiScaling`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
-; enable fix scaling for apps
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"EnablePerProcessSystemDPI"=dword:00000001
-"@
-Set-Content -Path "$env:SystemRoot\Temp\150%.reg" -Value $150 -Force
+# dpi scaling 150%
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"LogPixels`" /t REG_DWORD /d `"144`" /f >nul 2>&1"
 
-# import reg file
-Regedit.exe /S "$env:SystemRoot\Temp\150%.reg"
+# enable fix scaling for apps
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"EnablePerProcessSystemDPI`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
 exit
 
@@ -171,48 +110,28 @@ exit
 
 Clear-Host
 
-# create reg file
-$175 = @"
-Windows Registry Editor Version 5.00
+# 175
 
-; 6-11 pointer speed
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSensitivity"="10"
+# 6-11 pointer speed
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSensitivity`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; enable enhance pointer precision
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSpeed"="1"
-"MouseThreshold1"="6"
-"MouseThreshold2"="10"
+# enable enhance pointer precision
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSpeed`" /t REG_SZ /d `"1`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold1`" /t REG_SZ /d `"6`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold2`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; mouse curve 175% scaling
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"SmoothMouseXCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	60,66,16,00,00,00,00,00,\
-	C0,CC,2C,00,00,00,00,00,\
-	20,33,43,00,00,00,00,00,\
-	80,99,59,00,00,00,00,00
-"SmoothMouseYCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	00,00,38,00,00,00,00,00,\
-	00,00,70,00,00,00,00,00,\
-	00,00,A8,00,00,00,00,00,\
-	00,00,E0,00,00,00,00,00
+# mouse curve 175% scaling
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseXCurve`" /t REG_BINARY /d `"00000000000000006066160000000000C0CC2C000000000020334300000000008099590000000000`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseYCurve`" /t REG_BINARY /d `"00000000000000000000380000000000000070000000000000A800000000000000E0000000000000`" /f >nul 2>&1"
 
-; dpi scaling 175%
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"Win8DpiScaling"=dword:00000001
-"LogPixels"=dword:000000a8
+# use custom scaling
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"Win8DpiScaling`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
-; enable fix scaling for apps
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"EnablePerProcessSystemDPI"=dword:00000001
-"@
-Set-Content -Path "$env:SystemRoot\Temp\175%.reg" -Value $175 -Force
+# dpi scaling 175%
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"LogPixels`" /t REG_DWORD /d `"168`" /f >nul 2>&1"
 
-# import reg file
-Regedit.exe /S "$env:SystemRoot\Temp\175%.reg"
+# enable fix scaling for apps
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"EnablePerProcessSystemDPI`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
 exit
 
@@ -221,48 +140,28 @@ exit
 
 Clear-Host
 
-# create reg file
-$200 = @"
-Windows Registry Editor Version 5.00
+# 200
 
-; 6-11 pointer speed
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSensitivity"="10"
+# 6-11 pointer speed
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSensitivity`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; enable enhance pointer precision
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSpeed"="1"
-"MouseThreshold1"="6"
-"MouseThreshold2"="10"
+# enable enhance pointer precision
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSpeed`" /t REG_SZ /d `"1`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold1`" /t REG_SZ /d `"6`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold2`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; mouse curve 200% scaling
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"SmoothMouseXCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	90,99,19,00,00,00,00,00,\
-	20,33,33,00,00,00,00,00,\
-	B0,CC,4C,00,00,00,00,00,\
-	40,66,66,00,00,00,00,00
-"SmoothMouseYCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	00,00,38,00,00,00,00,00,\
-	00,00,70,00,00,00,00,00,\
-	00,00,A8,00,00,00,00,00,\
-	00,00,E0,00,00,00,00,00
+# mouse curve 200% scaling
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseXCurve`" /t REG_BINARY /d `"00000000000000009099190000000000203333000000000B0CC4C000000000040666600000000000`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseYCurve`" /t REG_BINARY /d `"00000000000000000000380000000000000070000000000000A800000000000000E0000000000000`" /f >nul 2>&1"
 
-; dpi scaling 200%
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"Win8DpiScaling"=dword:00000001
-"LogPixels"=dword:000000c0
+# use custom scaling
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"Win8DpiScaling`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
-; enable fix scaling for apps
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"EnablePerProcessSystemDPI"=dword:00000001
-"@
-Set-Content -Path "$env:SystemRoot\Temp\200%.reg" -Value $200 -Force
+# dpi scaling 200%
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"LogPixels`" /t REG_DWORD /d `"192`" /f >nul 2>&1"
 
-# import reg file
-Regedit.exe /S "$env:SystemRoot\Temp\200%.reg"
+# enable fix scaling for apps
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"EnablePerProcessSystemDPI`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
 exit
 
@@ -271,48 +170,28 @@ exit
 
 Clear-Host
 
-# create reg file
-$225 = @"
-Windows Registry Editor Version 5.00
+# 225
 
-; 6-11 pointer speed
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSensitivity"="10"
+# 6-11 pointer speed
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSensitivity`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; enable enhance pointer precision
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSpeed"="1"
-"MouseThreshold1"="6"
-"MouseThreshold2"="10"
+# enable enhance pointer precision
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSpeed`" /t REG_SZ /d `"1`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold1`" /t REG_SZ /d `"6`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold2`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; mouse curve 225% scaling
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"SmoothMouseXCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	C0,CC,1C,00,00,00,00,00,\
-	80,99,39,00,00,00,00,00,\
-	40,66,56,00,00,00,00,00,\
-	00,33,73,00,00,00,00,00
-"SmoothMouseYCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	00,00,38,00,00,00,00,00,\
-	00,00,70,00,00,00,00,00,\
-	00,00,A8,00,00,00,00,00,\
-	00,00,E0,00,00,00,00,00
+# mouse curve 225% scaling
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseXCurve`" /t REG_BINARY /d `"0000000000000000C0CC1C000000000080993900000000004066560000000000003373000000000`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseYCurve`" /t REG_BINARY /d `"00000000000000000000380000000000000070000000000000A800000000000000E0000000000000`" /f >nul 2>&1"
 
-; dpi scaling 225%
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"Win8DpiScaling"=dword:00000001
-"LogPixels"=dword:000000d8
+# use custom scaling
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"Win8DpiScaling`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
-; enable fix scaling for apps
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"EnablePerProcessSystemDPI"=dword:00000001
-"@
-Set-Content -Path "$env:SystemRoot\Temp\225%.reg" -Value $225 -Force
+# dpi scaling 225%
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"LogPixels`" /t REG_DWORD /d `"216`" /f >nul 2>&1"
 
-# import reg file
-Regedit.exe /S "$env:SystemRoot\Temp\225%.reg"
+# enable fix scaling for apps
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"EnablePerProcessSystemDPI`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
 exit
 
@@ -321,48 +200,28 @@ exit
 
 Clear-Host
 
-# create reg file
-$250 = @"
-Windows Registry Editor Version 5.00
+# 250
 
-; 6-11 pointer speed
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSensitivity"="10"
+# 6-11 pointer speed
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSensitivity`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; enable enhance pointer precision
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSpeed"="1"
-"MouseThreshold1"="6"
-"MouseThreshold2"="10"
+# enable enhance pointer precision
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSpeed`" /t REG_SZ /d `"1`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold1`" /t REG_SZ /d `"6`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold2`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; mouse curve 250% scaling
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"SmoothMouseXCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	00,00,20,00,00,00,00,00,\
-	00,00,40,00,00,00,00,00,\
-	00,00,60,00,00,00,00,00,\
-	00,00,80,00,00,00,00,00
-"SmoothMouseYCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	00,00,38,00,00,00,00,00,\
-	00,00,70,00,00,00,00,00,\
-	00,00,A8,00,00,00,00,00,\
-	00,00,E0,00,00,00,00,00
+# mouse curve 250% scaling
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseXCurve`" /t REG_BINARY /d `"00000000000000000000200000000000000040000000000000006000000000000000800000000000`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseYCurve`" /t REG_BINARY /d `"00000000000000000000380000000000000070000000000000A800000000000000E0000000000000`" /f >nul 2>&1"
 
-; dpi scaling 250%
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"Win8DpiScaling"=dword:00000001
-"LogPixels"=dword:000000f0
+# use custom scaling
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"Win8DpiScaling`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
-; enable fix scaling for apps
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"EnablePerProcessSystemDPI"=dword:00000001
-"@
-Set-Content -Path "$env:SystemRoot\Temp\250%.reg" -Value $250 -Force
+# dpi scaling 250%
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"LogPixels`" /t REG_DWORD /d `"240`" /f >nul 2>&1"
 
-# import reg file
-Regedit.exe /S "$env:SystemRoot\Temp\250%.reg"
+# enable fix scaling for apps
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"EnablePerProcessSystemDPI`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
 exit
 
@@ -371,48 +230,28 @@ exit
 
 Clear-Host
 
-# create reg file
-$300 = @"
-Windows Registry Editor Version 5.00
+# 300
 
-; 6-11 pointer speed
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSensitivity"="10"
+# 6-11 pointer speed
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSensitivity`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; enable enhance pointer precision
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSpeed"="1"
-"MouseThreshold1"="6"
-"MouseThreshold2"="10"
+# enable enhance pointer precision
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSpeed`" /t REG_SZ /d `"1`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold1`" /t REG_SZ /d `"6`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold2`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; mouse curve 300% scaling
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"SmoothMouseXCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	60,66,26,00,00,00,00,00,\
-	C0,CC,4C,00,00,00,00,00,\
-	20,33,73,00,00,00,00,00,\
-	80,99,99,00,00,00,00,00
-"SmoothMouseYCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	00,00,38,00,00,00,00,00,\
-	00,00,70,00,00,00,00,00,\
-	00,00,A8,00,00,00,00,00,\
-	00,00,E0,00,00,00,00,00
+# mouse curve 300% scaling
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseXCurve`" /t REG_BINARY /d `"00000000000000006066260000000000C0CC4C000000000020337300000000008099990000000000`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseYCurve`" /t REG_BINARY /d `"00000000000000000000380000000000000070000000000000A800000000000000E0000000000000`" /f >nul 2>&1"
 
-; dpi scaling 300%
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"Win8DpiScaling"=dword:00000001
-"LogPixels"=dword:00000120
+# use custom scaling
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"Win8DpiScaling`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
-; enable fix scaling for apps
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"EnablePerProcessSystemDPI"=dword:00000001
-"@
-Set-Content -Path "$env:SystemRoot\Temp\300%.reg" -Value $300 -Force
+# dpi scaling 300%
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"LogPixels`" /t REG_DWORD /d `"288`" /f >nul 2>&1"
 
-# import reg file
-Regedit.exe /S "$env:SystemRoot\Temp\300%.reg"
+# enable fix scaling for apps
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"EnablePerProcessSystemDPI`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
 exit
 
@@ -421,48 +260,28 @@ exit
 
 Clear-Host
 
-# create reg file
-$350 = @"
-Windows Registry Editor Version 5.00
+# 350
 
-; 6-11 pointer speed
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSensitivity"="10"
+# 6-11 pointer speed
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSensitivity`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; enable enhance pointer precision
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSpeed"="1"
-"MouseThreshold1"="6"
-"MouseThreshold2"="10"
+# enable enhance pointer precision
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseSpeed`" /t REG_SZ /d `"1`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold1`" /t REG_SZ /d `"6`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"MouseThreshold2`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 
-; mouse curve 350% scaling
-[HKEY_CURRENT_USER\Control Panel\Mouse]
-"SmoothMouseXCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	C0,CC,2C,00,00,00,00,00,\
-	80,99,59,00,00,00,00,00,\
-	40,66,86,00,00,00,00,00,\
-	00,33,B3,00,00,00,00,00
-"SmoothMouseYCurve"=hex:\
-	00,00,00,00,00,00,00,00,\
-	00,00,38,00,00,00,00,00,\
-	00,00,70,00,00,00,00,00,\
-	00,00,A8,00,00,00,00,00,\
-	00,00,E0,00,00,00,00,00
+# mouse curve 350% scaling
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseXCurve`" /t REG_BINARY /d `"0000000000000000C0CC2C000000000080995900000000004066860000000000003B300000000000`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Mouse`" /v `"SmoothMouseYCurve`" /t REG_BINARY /d `"00000000000000000000380000000000000070000000000000A800000000000000E0000000000000`" /f >nul 2>&1"
 
-; dpi scaling 350%
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"Win8DpiScaling"=dword:00000001
-"LogPixels"=dword:00000150
+# use custom scaling
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"Win8DpiScaling`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
-; enable fix scaling for apps
-[HKEY_CURRENT_USER\Control Panel\Desktop]
-"EnablePerProcessSystemDPI"=dword:00000001
-"@
-Set-Content -Path "$env:SystemRoot\Temp\350%.reg" -Value $350 -Force
+# dpi scaling 350%
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"LogPixels`" /t REG_DWORD /d `"336`" /f >nul 2>&1"
 
-# import reg file
-Regedit.exe /S "$env:SystemRoot\Temp\350%.reg"
+# enable fix scaling for apps
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"EnablePerProcessSystemDPI`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
 exit
 

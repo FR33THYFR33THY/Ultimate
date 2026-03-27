@@ -1,11 +1,9 @@
 . $CommonScript
 
 Ensure-Admin
-Testing-Connection
 
         # SCRIPT SILENT
         $progresspreference = 'silentlycontinue'
-
 
         # ALLOW PASSWORD SIGN IN
         cmd /c "reg add `"HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\PasswordLess\Device`" /v `"DevicePasswordLessBuildVersion`" /t REG_DWORD /d `"0`" /f >nul 2>&1"

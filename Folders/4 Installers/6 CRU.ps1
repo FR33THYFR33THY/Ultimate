@@ -6,7 +6,6 @@ Testing-Connection
 # SCRIPT SILENT
 $progresspreference = 'silentlycontinue'
 
-
 ## explorer "https://www.monitortests.com/forum/Thread-Custom-Resolution-Utility-CRU"
 Write-Host "Installing: Custom Resolution Utility..."
 

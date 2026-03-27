@@ -3,8 +3,8 @@
 Ensure-Admin
 Testing-Connection
 
-        # SCRIPT SILENT
-        $progresspreference = 'silentlycontinue'
+# SCRIPT SILENT
+$progresspreference = 'silentlycontinue'
 
 
 Write-Host "Installing: hidusbf..."

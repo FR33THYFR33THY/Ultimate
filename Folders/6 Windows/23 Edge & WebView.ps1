@@ -6,7 +6,6 @@ Testing-Connection
         # SCRIPT SILENT
         $progresspreference = 'silentlycontinue'
 
-
         Write-Host "1. Edge & WebView: Uninstall (Recommended)"
         Write-Host "2. Edge & WebView: Default`n"
         while ($true) {

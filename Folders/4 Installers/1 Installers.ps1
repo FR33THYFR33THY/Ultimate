@@ -39,9 +39,9 @@ Test-Connection
 	                  }
 	    show-menu
         while ($true) {
-        $choice = Read-Host ">"
-        if ($choice -match '^\d+$') {
-        switch ([int]$choice) {
+        $choice = Read-Host " "
+        if ($choice -match '^(2[0-4]|1[0-9]|[1-9])$') {
+        switch ($choice) {
         1 {
 
 Clear-Host

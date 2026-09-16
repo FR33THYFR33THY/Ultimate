@@ -185,20 +185,14 @@ Write-Host "Installing:"
 Write-Host "- Custom Resolution Utility..."
 Write-Host "- Scaled Resolution Editor..."
 
-# download custom resolution utility
-IWR "https://github.com/FR33THYFR33THY/Ultimate/releases/download/Files/cru.exe" -OutFile "$env:SystemRoot\Temp\CRU.exe"
-
-# download scaled resolution editor
-IWR "https://github.com/FR33THYFR33THY/Ultimate/releases/download/Files/sre.exe" -OutFile "$env:SystemRoot\Temp\SRE.exe"
-
 # new folder
 New-Item -Path "$env:SystemDrive\Program Files (x86)\CRUSRE" -ItemType Directory -Force -ErrorAction SilentlyContinue | Out-Null
 
-# install custom resolution utility
-Move-Item -Path "$env:SystemRoot\Temp\CRU.exe" -Destination "$env:SystemDrive\Program Files (x86)\CRUSRE" -Force -ErrorAction SilentlyContinue | Out-Null
+# download custom resolution utility
+IWR "https://github.com/FR33THYFR33THY/Ultimate/releases/download/Files/cru.exe" -OutFile "$env:SystemDrive\Program Files (x86)\CRUSRE\CRU.exe"
 
-# install scaled resolution editor
-Move-Item -Path "$env:SystemRoot\Temp\SRE.exe" -Destination "$env:SystemDrive\Program Files (x86)\CRUSRE" -Force -ErrorAction SilentlyContinue | Out-Null
+# download scaled resolution editor
+IWR "https://github.com/FR33THYFR33THY/Ultimate/releases/download/Files/sre.exe" -OutFile "$env:SystemDrive\Program Files (x86)\CRUSRE\SRE.exe"
 
 # create desktop shortcut
 $WshShell = New-Object -comObject WScript.Shell
@@ -776,15 +770,15 @@ IWR "https://github.com/FR33THYFR33THY/Ultimate/releases/download/Files/omm.exe"
 $WshShell = New-Object -comObject WScript.Shell
 $Desktop = (New-Object -ComObject Shell.Application).Namespace('shell:Desktop').Self.Path
 $Shortcut = $WshShell.CreateShortcut("$Desktop\Onboard Memory Manager.lnk")
-$Shortcut.TargetPath = "$env:LOCALAPPDATA\Microsoft\WinGet\Packages\Logitech.OnboardMemoryManager_Microsoft.Winget.Source_8wekyb3d8bbwe\OnboardMemoryManager.exe"
-$Shortcut.WorkingDirectory = "$env:LOCALAPPDATA\Microsoft\WinGet\Packages\Logitech.OnboardMemoryManager_Microsoft.Winget.Source_8wekyb3d8bbwe"
+$Shortcut.TargetPath = "$env:SystemDrive\Program Files (x86)\Onboard Memory Manager\Onboard Memory Manager.exe"
+$Shortcut.WorkingDirectory = "$env:SystemDrive\Program Files (x86)\Onboard Memory Manager"
 $Shortcut.Save()
 
 # create start menu shortcut
 $WshShell = New-Object -comObject WScript.Shell
 $Shortcut = $WshShell.CreateShortcut("$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Onboard Memory Manager.lnk")
-$Shortcut.TargetPath = "$env:LOCALAPPDATA\Microsoft\WinGet\Packages\Logitech.OnboardMemoryManager_Microsoft.Winget.Source_8wekyb3d8bbwe\OnboardMemoryManager.exe"
-$Shortcut.WorkingDirectory = "$env:LOCALAPPDATA\Microsoft\WinGet\Packages\Logitech.OnboardMemoryManager_Microsoft.Winget.Source_8wekyb3d8bbwe"
+$Shortcut.TargetPath = "$env:SystemDrive\Program Files (x86)\Onboard Memory Manager\Onboard Memory Manager.exe"
+$Shortcut.WorkingDirectory = "$env:SystemDrive\Program Files (x86)\Onboard Memory Manager"
 $Shortcut.Save()
 
 show-menu
@@ -931,7 +925,7 @@ Clear-Host
 Write-Host "Installing: Ubisoft Connect..."
 
 # download ubisoft connect
-IWR "hhttps://github.com/FR33THYFR33THY/Ultimate/releases/download/Files/ubisoft.exe" -OutFile "$env:SystemRoot\Temp\ubisoft.exe"
+IWR "https://github.com/FR33THYFR33THY/Ultimate/releases/download/Files/ubisoft.exe" -OutFile "$env:SystemRoot\Temp\ubisoft.exe"
 
 # install ubisoft connect
 Start-Process -Wait "$env:SystemRoot\Temp\ubisoft.exe" -ArgumentList "/S"

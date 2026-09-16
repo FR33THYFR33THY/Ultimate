@@ -1,6 +1,7 @@
 MIT License
 
-Copyright (c) 2026 FR33THY
+Copyright (c) FR33THY
+https://www.youtube.com/fr33thy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +20,306 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Other
+
+Get-FileHash "Name:" -Algorithm SHA256
+https://www.virustotal.com/gui/home/search "SHA256:"
+
+Name: 7zip.exe
+Source: https://github.com/ip7z/7zip/releases/download/26.03/7z2603-x64.exe
+SHA256: 0859C524B8A63551848F0C246ABDDCB1D0B7B656B0FBFE879F8D85E61A9E6EDD
+Copyright: (c) Igor Pavlov
+
+Name: autoruns.exe
+Source: https://download.sysinternals.com/files/Autoruns.zip
+SHA256: D8DEB836731FDF760898B377347CA4FF57E750C09F07E2CBAAB43B0060A89DCE
+Copyright: (c) Microsoft Corporation
+
+Name: battlenet.exe
+Source: https://downloader.battle.net/download/getInstaller?os=win&installer=Battle.net-Setup.exe
+SHA256: DE5D32D4EA5EED5A9E120027FB68B370976DBFECC8F2A8F91305977F0B87FCAF
+Copyright: (c) Blizzard Entertainment, Inc.
+
+Name: brave.exe
+Source: https://brave-browser-downloads.s3.brave.com/latest/brave_installer-x64.exe
+SHA256: 9F07EC226B535FBB57B424F5F7258705B14F3F3E226405BDF7C33D40DA39ADD3
+Copyright: (c) Brave Software, Inc.
+
+Name: bsg.exe
+Source: https://launcher.escapefromtarkov.com/launcher/download
+SHA256: CDD3C1DB4BE0E983E5A01B2DCA1345A66F17466AEB51FE67E989D523C9C05CFB
+Copyright: (c) BATTLESTATE GAMES LIMITED.
+
+Name: chrome.exe
+Source: https://dl.google.com/chrome/install/ChromeSetup.exe
+SHA256: A0D0845F0CC3E2360DA593C4D074E661FDC30400B4479DFFA510D006AC758F15
+Copyright: (c) Google LLC
+
+Name: cpuz.exe
+Source: https://download.cpuid.com/cpu-z/cpu-z_3.01-en.zip
+SHA256: A01369043C9E199747D62B950FB6DB3F793EA74FEB9C667AE291988405905FBE
+Copyright: (c) CPUID
+
+Name: cru.exe
+Source: https://www.monitortests.com/download/cru/cru-1.5.3.zip
+SHA256: 6BD53F11C51BAB8FD438478BFA8A757BF8C4950C0FC23CCEE385083030F126EF
+Copyright: (c) ToastyX
+
+Name: ddu.exe
+Source: https://download.wagnardsoft.com/DDU/DDU%20v18.1.6.0_setup.exe
+SHA256: 9B2611EC6D5A9D8853936CC071CC4026C6CFE91BEED956CD41CC81C0930ACD47
+Copyright: (c) Wagnardsoft
+
+Name: directx.exe
+Source: https://download.microsoft.com/download/8/4/A/84A35BF1-DAFE-4AE8-82AF-AD2AE20B6B14/directx_Jun2010_redist.exe
+SHA256: 053F76DCBB28802E23341B6A787E3B0791C0FA5C8D4D011B1044172DBF89C73B
+Copyright: (c) Microsoft Corporation
+
+Name: discord.exe
+Source: https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64
+SHA256: ADC0B6B9FF805252FE55166EAEE95355A0AD1D2A4368D8960F701945DBFF1513
+Copyright: (c) Discord Inc.
+
+Name: ea.exe
+Source: https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EAappInstaller.exe
+SHA256: F7E0ECD6866D1E4024FBD7B4B650634AFD218BF15DA79A0B055141AD40475C40
+Copyright: (c) Electronic Arts Inc.
+
+Name: edge.exe
+Source: https://c2rsetup.officeapps.live.com/c2r/downloadEdge.aspx?platform=Default&source=EdgeStablePage&Channel=Stable&language=en&Consent=1&brand=M100
+SHA256: 61A2F3AD5B6DF4167D2FFAFADE138FAE84CB1603C40251D46AA0A8FFA8BFF138
+Copyright: (c) Microsoft Corporation
+
+Name: edgewebview.exe
+Source: https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/7ff41be4-dbce-4efe-823f-c7d33a4e3c5e/MicrosoftEdgeWebview2Setup.exe
+SHA256: 02C97E5E32A97D896163EC68A3EA3AB0339E57F274348B8689399638B649B2B9
+Copyright: (c) Microsoft Corporation
+
+Name: epic.msi
+Source: https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi
+SHA256: 1513D6CC2AFDA0367C8375B6F25F490C162DA5607CE4B4ADBB41906A2D742236
+Copyright: (c) Epic Games, Inc.
+
+Name: firefox.exe
+Source: https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US
+SHA256: 86A027237F7408E8A4D18637C57D487455A704CBB2466A32D0D14C2207D2699A
+Copyright: (c) Mozilla Foundation
+
+Name: frameview.exe
+Source: https://images.nvidia.com/content/geforce/technologies/frameview/FrameView_1.9.0/FrameViewSetup.exe
+SHA256: 3B80047CC110DFBB49502EC352DB2DA543A348EF3C6561A5835090120E41564D
+Copyright: (c) NVIDIA Corporation
+
+Name: furmark.zip
+Source: https://gpumagick.com/downloads/files/2025/fm2/2_10_dbc69dd0a08da5ff09169a4fc759ddaa/FurMark_2.10.2_win64.zip
+SHA256: 27AB2E723E2E65DF720BCAFEA681D2104744EDA4A1E0A0374D7E61EAA820E63B
+Copyright: (c) Geeks3D
+
+Name: gamingrepairtool.exe
+Source: https://aka.ms/GamingRepairTool
+SHA256: 1EA33E868BDB2C7D1606FD2098C2BD04495DFAEBEBD6E794B32FE72F198598DB
+Copyright: (c) Microsoft Corporation
+
+Name: gog.exe
+Source: https://webinstallers.gog-statics.com/download/GOG_Galaxy_2.0.exe
+SHA256: 826EEF5AB19F127A77E79719A5AF515D6A6C1FF6D4BF664DBF868A19E6D4287D
+Copyright: (c) GOG sp. z o.o.
+
+Name: gpuz.exe
+Source: https://ftp.nluug.nl/pub/games/PC/guru3d/generic/GPU-Z-[Guru3D.com].zip
+SHA256: 6CB0EF29682452DE81A9576808881685161411A1FAD00938BA04131159979C29
+Copyright: (c) TechPowerUp
+
+Name: helium.exe
+Source: https://github.com/imputnet/helium-windows/releases/download/0.17.0.1/helium_0.17.0.1_x64-installer.exe
+SHA256: 2BB4CDA4AE8D22DEFBE47DDEF2D39AF2550F2E06AA9759F30B533BC2E93C1136
+Copyright: (c) imputnet
+
+Name: hidusbf.zip
+Source: https://cdn.shopify.com/s/files/1/0499/4089/files/hidusbf_BB_11.5.25.zip
+SHA256: CE941C0B09F224A754448CD441DB2F2EB57234D294465FA2A79C739F9CA95B60
+Copyright: (c) Battle Beaver Customs
+Copyright: (c) LordOfMice
+
+Name: inspector.exe
+Source: https://github.com/Orbmu2k/nvidiaProfileInspector/releases/download/v3.0.2.2/nvidiaProfileInspector.zip
+SHA256: 071F38BFEEC4FAB0A33261F7FA010940E2C3C96FB21F03D18D490110DDB90B03
+Copyright: (c) Orbmu2k
+
+Name: league.exe
+Source: https://lol.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.na.exe
+SHA256: CC897EF385FF3AE1481106C251A86AC7382F2B736053E9E577AADA327CABEB54
+Copyright: (c) Riot Games, Inc.
+
+Name: mediacreationtoolw10.exe
+Source: https://go.microsoft.com/fwlink/?LinkId=2265055
+SHA256: 690C8A63769D444FAD47B7DDECEE7F24C9333AA735D0BD46587D0DF5CF15CDE5
+Copyright: (c) Microsoft Corporation
+
+Name: mediacreationtoolw11.exe
+Source: https://go.microsoft.com/fwlink/?linkid=2156295
+SHA256: E887DFFF70BAF09A8C1DEBFE8C304DD9F2D9652FAE8B7C83B3C24554A79BBD7F
+Copyright: (c) Microsoft Corporation
+
+Name: moreclocktool.exe
+Source: https://www.igorslab.de/installer/MoreClockTool_v1111_2.zip
+SHA256: 0DBFFF27523796CD285AA59E14CB67FB71BE423B59A7DA3F25743A184FF0F807
+Copyright: (c) Eine Publikation von igor'sLAB
+
+Name: mousemovementrecorder.exe
+Source: https://donewmouseaccel.blogspot.com/2010/03/markc-windows-7-mouse-acceleration-fix.html
+SHA256: 9292BD7AE93F4583D0FC8C6289B16E4ED02A1BCF441E9EEDD75B692A21474CA5
+Copyright: (c) Mark Cranness
+Copyright: (c) anir
+
+Name: msiafterburner.exe
+Source: https://ftp.nluug.nl/pub/games/PC/guru3d/afterburner/[Guru3D]-MSIAfterburnerSetup467Beta3Build17352.zip
+SHA256: 3C954664AE5C45937A4E0059C4EDCE3FC3DD535DF28F28DEFD0CAAAF9B9E4CD0
+Copyright: (c) Micro-Star INT'L CO., LTD.
+Copyright: (c) Alexey Nicolaychuk (Unwinder)
+
+Name: notepad++.exe
+Source: https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.9.8/npp.8.9.8.Installer.x64.exe
+SHA256: 7B2A949BF460FB37A3888C9048698F43222A185A48323023DF1C51E78A3CA1C2
+Copyright: (c) Don HO <don.h@free.fr>.
+
+Name: nvidiaapp.exe
+Source: https://us.download.nvidia.com/nvapp/client/11.0.9.251/NVIDIA_app_v11.0.9.251.exe
+SHA256: 0A43D4BD1B676B85816F893D345FA130BC7C00453D09654317799147F3B61D9C
+Copyright: (c) NVIDIA Corporation
+
+Name: nvp.appx
+Source: https://apps.microsoft.com/detail/9NF8H0H7WMLT
+SHA256: DD9CA6BE34A6F9D90D8EB85FF39C4292F14DF32DD7F6E032FEC0C8DE76B98EEB
+Copyright: (c) NVIDIA Corporation
+
+Name: obs.exe
+Source: https://github.com/obsproject/obs-studio/releases/download/32.2.2/OBS-Studio-32.2.2-Windows-x64-Installer.exe
+SHA256: C3A0B880ADBE64DC4BCB68F93016916AB5B55AE43FD227115287BF80257D92DC
+Copyright: (c) Wizards of OBS LLC
+
+Name: occt.exe
+Source: https://www.ocbase.com/download/edition:Personal/os:Windows
+SHA256: 449AFFF33B72040879C6146733A9B05E9DE3FC4A2FDEA70A7DFD93E7F93B9B8D
+Copyright: (c) OCBASE
+
+Name: omm.exe
+Source: https://download01.logi.com/web/ftp/pub/techsupport/gaming/OnboardMemoryManager_2.6.1749.exe
+SHA256: AEC76587F1D07C51667C140C730A38F82675FBE2D898E79413372146B9632358
+Copyright: (c) Logitech.
+
+Name: polling.exe
+Source: https://github.com/cakama3a/Polling/releases/download/1.3.1.4/Polling.exe
+SHA256: 4707F50BD79956D8B7D99BE30894A8D328900044190ACF164434328FA551E53D
+Copyright: (c) John Punch
+
+Name: potplayer.exe
+Source: https://t1.daumcdn.net/potplayer/PotPlayer/Version/Latest/PotPlayerSetup64.exe
+SHA256: 4B9833ADF53B78C2149FE13DD67F2504BF39EE30B45C03F09E5F2C25E43F9CFE
+Copyright: (c) Kakao Corp.
+
+Name: remotedesktopconnection.exe
+Source: https://go.microsoft.com/fwlink/?linkid=2247659
+SHA256: B3F79EB8432F5C1EBED1E3BAE254541AA87839CDFBCFF4ADD392538B88C46021
+Copyright: (c) Microsoft Corporation
+
+Name: roblox.exe
+Source: https://www.roblox.com/download/client?os=win
+SHA256: F542C6B9FCA26DAD990BF5FB74AEB47D5C06C6A0F3127047ED539A82C4E56904
+Copyright: (c) Roblox Corporation
+
+Name: rockstar.exe
+Source: https://gamedownloads.rockstargames.com/public/installer/Rockstar-Games-Launcher.exe
+SHA256: 321886457B7E4AB727A27671C17A815684A3943579EEDF7E2248A3B9F0973746
+Copyright: (c) Rockstar Games, Inc.
+
+Name: snippingtool.exe
+Source: https://download.microsoft.com/download/f/4/e/f4e03465-34d1-49b6-af1a-2816ca4a2402/installers_signed/snippingtool_setup_x64.exe
+SHA256: BDC9E0B26F62CA67E530671EAFD41F67BA8B86121CED44C966D008C7E077B321
+Copyright: (c) Microsoft Corporation
+
+Name: spotify.exe
+Source: https://download.scdn.co/SpotifySetup.exe
+SHA256: 4720571DF06393609DBA94C9FE47367254345FEFD4A8D216A1AD34BF98DACC83
+Copyright: (c) Spotify AB
+
+Name: sre.exe
+Source: https://www.monitortests.com/download/sre/sre-1.0.zip
+SHA256: A16E2E3B2485FFA250FDB924646E1A7406A2E5EEEC33CB0731D7DB4A0714D74F
+Copyright: (c) ToastyX
+
+Name: steam.exe
+Source: https://cdn.cloudflare.steamstatic.com/client/installer/SteamSetup.exe
+SHA256: 7D3654531C32D941B8CAE81C4137FC542172BFA9635F169CB392F245A0A12BCB
+Copyright: (c) Valve Corporation.
+
+Name: ubisoft.exe
+Source: https://static3.cdn.ubi.com/orbit/launcher_installer/UbisoftConnectInstaller.exe
+SHA256: 2DF8790F7A4ABA803DD140FF20E45A55F60D1C7FE3BD34709B4519BCB5C5E3E7
+Copyright: (c) Ubisoft Entertainment.
+
+Name: valorant.exe
+Source: https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.ap.exe
+SHA256: 72827F012EA95D07CAA8F1C7EB6791002A13F1877ECD3CE951EDCDFC6405DB19
+Copyright: (c) Riot Games, Inc.
+
+Name: vcredist2005_x64.exe
+Source: https://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_x64.exe
+SHA256: 4487570BD86E2E1AAC29DB2A1D0A91EB63361FCAAC570808EB327CD4E0E2240D
+Copyright: (c) Microsoft Corporation
+
+Name: vcredist2005_x86.exe
+Source: https://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_x86.exe
+SHA256: 8648C5FC29C44B9112FE52F9A33F80E7FC42D10F3B5B42B2121542A13E44ADFD
+Copyright: (c) Microsoft Corporation
+
+Name: vcredist2008_x64.exe
+Source: https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x64.exe
+SHA256: C5E273A4A16AB4D5471E91C7477719A2F45DDADB76C7F98A38FA5074A6838654
+Copyright: (c) Microsoft Corporation
+
+Name: vcredist2008_x86.exe
+Source: https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x86.exe
+SHA256: 8742BCBF24EF328A72D2A27B693CC7071E38D3BB4B9B44DEC42AA3D2C8D61D92
+Copyright: (c) Microsoft Corporation
+
+Name: vcredist2010_x64.exe
+Source: https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x64.exe
+SHA256: F3B7A76D84D23F91957AA18456A14B4E90609E4CE8194C5653384ED38DADA6F3
+Copyright: (c) Microsoft Corporation
+
+Name: vcredist2010_x86.exe
+Source: https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x86.exe
+SHA256: 99DCE3C841CC6028560830F7866C9CE2928C98CF3256892EF8E6CF755147B0D8
+Copyright: (c) Microsoft Corporation
+
+Name: vcredist2012_x64.exe
+Source: https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe
+SHA256: 681BE3E5BA9FD3DA02C09D7E565ADFA078640ED66A0D58583EFAD2C1E3CC4064
+Copyright: (c) Microsoft Corporation
+
+Name: vcredist2012_x86.exe
+Source: https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe
+SHA256: B924AD8062EAF4E70437C8BE50FA612162795FF0839479546CE907FFA8D6E386
+Copyright: (c) Microsoft Corporation
+
+Name: vcredist2013_x64.exe
+Source: https://download.microsoft.com/download/2/e/6/2e61cfa4-993b-4dd4-91da-3737cd5cd6e3/vcredist_x64.exe
+SHA256: E554425243E3E8CA1CD5FE550DB41E6FA58A007C74FAD400274B128452F38FB8
+Copyright: (c) Microsoft Corporation
+
+Name: vcredist2013_x86.exe
+Source: https://download.microsoft.com/download/2/e/6/2e61cfa4-993b-4dd4-91da-3737cd5cd6e3/vcredist_x86.exe
+SHA256: A22895E55B26202EAE166838EDBE2EA6AAD00D7EA600C11F8A31EDE5CBCE2048
+Copyright: (c) Microsoft Corporation
+
+Name: vcredist2015_2017_2019_2022_x64.exe
+Source: https://aka.ms/vs/17/release/vc_redist.x64.exe
+SHA256: CC0FF0EB1DC3F5188AE6300FAEF32BF5BEEBA4BDD6E8E445A9184072096B713B
+Copyright: (c) Microsoft Corporation
+
+Name: vcredist2015_2017_2019_2022_x86.exe
+Source: https://aka.ms/vs/17/release/vc_redist.x86.exe
+SHA256: 0C09F2611660441084CE0DF425C51C11E147E6447963C3690F97E0B25C55ED64
+Copyright: (c) Microsoft Corporation

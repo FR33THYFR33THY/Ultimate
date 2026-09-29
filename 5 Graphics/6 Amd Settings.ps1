@@ -59,6 +59,16 @@ cmd /c "reg add `"HKCU\Software\AMD\CN`" /v `"AnimationEffect`" /t REG_SZ /d `"f
 # graphics profile - custom
 cmd /c "reg add `"HKCU\Software\AMD\CN`" /v `"WizardProfile`" /t REG_SZ /d `"PROFILE_CUSTOM`" /f >nul 2>&1"
 
+# radeon anti-lag - enabled
+$basePath = "HKLM:\System\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}"
+$adapterKeys = Get-ChildItem -Path $basePath -ErrorAction SilentlyContinue
+foreach ($key in $adapterKeys) {
+if ($key.PSChildName -match '^\d{4}$') {
+$regPath = $key.Name
+cmd /c "reg add `"$regPath`" /v `"KMD_DeLagEnabled`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
+}
+}
+
 # wait for vertical refresh - always off
 $basePath = "HKLM:\System\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}"
 $allKeys = Get-ChildItem -Path $basePath -Recurse -ErrorAction SilentlyContinue
@@ -177,6 +187,16 @@ cmd /c "reg delete `"HKCU\Software\AMD\CN`" /v `"AnimationEffect`" /f >nul 2>&1"
 # graphics
 # revert graphics profile - custom
 cmd /c "reg delete `"HKCU\Software\AMD\CN`" /v `"WizardProfile`" /f >nul 2>&1"
+
+# revert radeon anti-lag - enabled
+$basePath = "HKLM:\System\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}"
+$adapterKeys = Get-ChildItem -Path $basePath -ErrorAction SilentlyContinue
+foreach ($key in $adapterKeys) {
+if ($key.PSChildName -match '^\d{4}$') {
+$regPath = $key.Name
+cmd /c "reg add `"$regPath`" /v `"KMD_DeLagEnabled`" /t REG_DWORD /d `"0`" /f >nul 2>&1"
+}
+}
 
 # revert wait for vertical refresh - always off
 $basePath = "HKLM:\System\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}"

@@ -38,13 +38,13 @@ $regPath = $key.Name
 cmd /c "reg add `"$regPath`" /v `"Global_AsyncFlipMode`" /t REG_DWORD /d `"2`" /f >nul 2>&1"
 }
 
-# low latency mode - off
+# low latency mode - on
 $basePath = "HKLM:\System\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}"
 $allKeys = Get-ChildItem -Path $basePath -Recurse -ErrorAction SilentlyContinue
 $optionKeys = $allKeys | Where-Object { $_.PSChildName -eq "3DKeys" }
 foreach ($key in $optionKeys) {
 $regPath = $key.Name
-cmd /c "reg add `"$regPath`" /v `"Global_LowLatency`" /t REG_DWORD /d `"0`" /f >nul 2>&1"
+cmd /c "reg add `"$regPath`" /v `"Global_LowLatency`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 }
 
 # disable global windows variable refresh rate to stop screen flicker/driver conflict

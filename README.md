@@ -16,4 +16,5 @@ iwr 'https://github.com/FR33THYFR33THY/Ultimate/raw/refs/heads/main/IWR.ps1' -us
 # Donation 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://botrix.live/p/fr33thy/tip)
 
-# Video
+# [Video](<https://youtu.be/Xc7l8PCTJyg>)
+[![Video](https://img.youtube.com/vi/Xc7l8PCTJyg/maxresdefault.jpg)]([https://www.youtube.com/watch?v=Xc7l8PCTJyg](https://youtu.be/Xc7l8PCTJyg))

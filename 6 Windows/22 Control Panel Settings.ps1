@@ -981,9 +981,9 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Start]
 "ShowRecentList"=dword:00000000
 
-; disable pinned
+; enable pinned
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Start]
-"ShowPinnedSection"=dword:00000000
+"ShowPinnedSection"=dword:00000001
 
 ; disable recent
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Start]
